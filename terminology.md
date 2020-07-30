@@ -1,9 +1,10 @@
 # Terminology and Acronyms
 
-| [A](#a) | [B](#b) | [C](#c) | [D](#d) | [F](#f) | [G](#g) | [H](#h) | [I](#i) | [L](#l) | [M](#m) | [N](#n) | [O](#o) | [P](#p) | [R](#r) | [S](#s) | [T](#t) | [U](#u) | [W](#w) |
+| [A](#a) | [B](#b) | [C](#c) | [D](#d) | [E](#e) | [F](#f) | [G](#g) | [H](#h) | [I](#i) | [L](#l) | [M](#m) | [N](#n) | [O](#o) | [P](#p) | [R](#r) | [S](#s) | [T](#t) | [U](#u) | [W](#w) |
 
 ### A
 * **ACKs:** Acknowledgements
+* **AIMD:** Additive-increase, Multiplicative-decrease
 * **AON:** Active Optical Network
 * **ARQ protocols:**  Automatic Repeat reQuest protocols
 
@@ -16,6 +17,7 @@
 * **CMTS:** Cable Modem Termination System
 * **COTS:** Components Off The Shelf
 * **CRC:** Cyclic Redundancy Check
+* **CRDTs:** Commutative Replicated Data Types
 
 ### D
 * **DASH:** Dynamic Adaptive Streaming over HTTP
@@ -26,6 +28,9 @@
 * **DSL:** Digital Subscriber Line
 * **DSLAM:** Digital Subscriber Line Access Multiplexer
 
+### E
+* **ECN:** Explicit Congestion Notification
+
 ### F
 * **FDM:** Frequency-Division Multiplexing
 * **FiOS:** Fiber Optic Service
@@ -35,6 +40,7 @@
 * **FTTH:** Fiber to the Home
 
 ### G
+* **GBN:** Go-Back-N
 * **GRAM:** Grid Resource Allocation Manager
 * **GSI:** Grid Security Infrastructure
 
@@ -64,12 +70,15 @@
 * **MAN:** Metropolitan Area Network
 * **MIPS:** Microprocessor without Interlocked Pipeline Stages
 * **MMU:** Memory Management Unit
+* **MSS:** Maximum Segment Size
 * **MTTF:** Mean Time to Failure
+* **MTU:** Maximum Transmission Unit
 
 ### N
 * **NAKs:** Negative Acknowledgements
 * **NCP:** Network Control Protocol
 * **NFS:** Network File System
+* **NTP:** Network Time Protocol
 
 ### O
 * **OC:** Optical Carrier
@@ -103,6 +112,7 @@
   * A protocol that provides for the transfer of email messages.
 * **SOA:** Service Oriented Architecture
 * **SPoF:** Single Point of Failure
+* **SR:** Selective Repeat
 * **SRM:** Scalable Reliable Multicast
 * **SSD:** Solid State Disk
 * **SSL:** Secure Sockets Layer
