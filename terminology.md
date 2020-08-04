@@ -18,9 +18,12 @@
 * **COTS:** Components Off The Shelf
 * **CRC:** Cyclic Redundancy Check
 * **CRDTs:** Commutative Replicated Data Types
+* **CWR:** Congestion Window Reduced
 
 ### D
 * **DASH:** Dynamic Adaptive Streaming over HTTP
+* **DCCP:** Datagram Congestion Control Protocol
+* **DCTCP:** Data Center TCP
 * **DDoS:** Distributed Denial of Service
 * **DHT:** Distributed Hash Table
 * **DNS:** Domain Name System
@@ -29,6 +32,7 @@
 * **DSLAM:** Digital Subscriber Line Access Multiplexer
 
 ### E
+* **ECE:** Explicit Congestion Notification Echo
 * **ECN:** Explicit Congestion Notification
 
 ### F
@@ -108,6 +112,7 @@
 
 ### S
 * **SaaS:** Software as a Service
+* **SDN:** Software Defined Network
 * **SMTP:** Simple Mail Transfer Protocol
   * A protocol that provides for the transfer of email messages.
 * **SOA:** Service Oriented Architecture
