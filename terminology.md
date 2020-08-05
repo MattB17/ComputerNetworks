@@ -6,6 +6,8 @@
 * **ACKs:** Acknowledgements
 * **AIMD:** Additive-increase, Multiplicative-decrease
 * **AON:** Active Optical Network
+* **AQM algorithm:** Active Queue Management algorithm
+  * algorithm for packet-dropping or marking
 * **ARQ protocols:**  Automatic Repeat reQuest protocols
 
 ### B
@@ -52,6 +54,7 @@
 * **HaaS:** Hardware as a Service
 * **HPC:** High Performance Computing
 * **HFC:** Hybrid Fiber Coax
+* **HOL blocking:** Head-of-the-line blocking
 * **HTTP:** HyperText Transfer Protocol
   * a protocol that provides for Web document request and transfer
 
@@ -103,6 +106,8 @@
 ### R
 * **RAII:** Resource Acquisition is Initialization
 * **RAM:** Random Access Memory
+* **RED:** Random Early Detection
+  * An AQM algorithm
 * **RFC:** Request for Comments
 * **RLS:** Replica Location Service
 * **RMTP:** Reliable Multicast Transport Protocol
@@ -125,6 +130,7 @@
 * **SWIM:** Scalable Weakly-consistent Infection-style Membership
 
 ### T
+* **TCAM:** Ternary Content Addressable Memory
 * **TCP:** Transmission Control Protocol
 * **TDM:** Time-Division Multiplexing
 * **TTL:** Time to Live
