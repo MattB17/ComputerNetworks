@@ -16,6 +16,8 @@
 
 ### C
 * **CDN::** Content Distribution Network
+* **CIDR:** Classless Interdomain Routing
+  * The Internet's address assignment strategy
 * **CMTS:** Cable Modem Termination System
 * **COTS:** Components Off The Shelf
 * **CRC:** Cyclic Redundancy Check
@@ -27,6 +29,8 @@
 * **DCCP:** Datagram Congestion Control Protocol
 * **DCTCP:** Data Center TCP
 * **DDoS:** Distributed Denial of Service
+* **DHCP:** Dynamic Host Configuration Protocol
+  * allows a host to obtain (be allocated) an IP address automatically
 * **DHT:** Distributed Hash Table
 * **DNS:** Domain Name System
 * **DoS:** Denial-of-Service
@@ -60,6 +64,8 @@
 
 ### I
 * **IaaS:** Infrastructure as a Service
+* **ICANN:** Internet Corporation for Assigned Names and Numbers
+  * manages IP addresses
 * **IETF:** Internet Engineering Task Force
 * **IMAP:** Internet Mail Access Protocol
 * **IP:** Internet Protocol
@@ -80,6 +86,7 @@
 * **MSS:** Maximum Segment Size
 * **MTTF:** Mean Time to Failure
 * **MTU:** Maximum Transmission Unit
+  * The maximum amount of data that a link layer frame can carry
 
 ### N
 * **NAKs:** Negative Acknowledgements
