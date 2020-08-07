@@ -34,6 +34,7 @@
 * **DHT:** Distributed Hash Table
 * **DNS:** Domain Name System
 * **DoS:** Denial-of-Service
+* **DPI:** Deep Packet Inspection
 * **DSL:** Digital Subscriber Line
 * **DSLAM:** Digital Subscriber Line Access Multiplexer
 
@@ -90,6 +91,8 @@
 
 ### N
 * **NAKs:** Negative Acknowledgements
+* **NAT:** Network Address Translation
+  * The process of translating IPs in a LAN to IPs to be used in the broader internet
 * **NCP:** Network Control Protocol
 * **NFS:** Network File System
 * **NTP:** Network Time Protocol
@@ -140,6 +143,7 @@
 * **TCAM:** Ternary Content Addressable Memory
 * **TCP:** Transmission Control Protocol
 * **TDM:** Time-Division Multiplexing
+* **TOS:** Type of Service
 * **TTL:** Time to Live
 
 ### U

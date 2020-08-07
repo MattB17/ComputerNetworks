@@ -1,5 +1,5 @@
 import socket
-from utils import read_message
+from Networking.WebServer.utils import read_message
 
 class WebServer:
     def __init__(self, host, port):
