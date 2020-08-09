@@ -29,3 +29,9 @@ def mock_web_server(mock_server_socket):
 def test_instantiation(mock_web_server):
     assert mock_web_server.get_host() == '127.0.0.1'
     assert mock_web_server.get_port() == 8000
+    assert not mock_web_server.is_running()
+
+
+def test_close(mock_web_server, mock_server_socket):
+    mock_web_server.close()
+    mock_server_socket.close.assert_called_once()

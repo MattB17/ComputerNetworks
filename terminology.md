@@ -37,6 +37,8 @@
 * **DPI:** Deep Packet Inspection
 * **DSL:** Digital Subscriber Line
 * **DSLAM:** Digital Subscriber Line Access Multiplexer
+* **DV Algorithm:** Distance vector algorithm
+  * A decentralized routing algorithm where each node maintains a vector of estimates of the costs to all other nodes in the network.
 
 ### E
 * **ECE:** Explicit Congestion Notification Echo
@@ -78,6 +80,8 @@
 * **L1i:** Level 1 Cache - instruction
 * **LAN:** Local Area Network
 * **LEO:** Low Earth Orbiting
+* **LS Algorithms:** Link-State Algorithms
+  * Algorithms with global state information about the network
 * **LTE:** Long Term Evolution
 
 ### M

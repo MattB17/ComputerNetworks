@@ -3,8 +3,8 @@ from unittest.mock import MagicMock, call
 from Networking.WebServer.utils import send_data_through_socket
 
 
-OK_MESSAGE = "HTTP/1.1 200 OK\r\n\r\n".encode()
-END_MESSAGE = "\r\n".encode()
+OK_MESSAGE = b'HTTP/1.1 200 OK\r\n\r\n'
+END_MESSAGE = b'\r\n'
 
 
 @pytest.fixture(scope="function")
