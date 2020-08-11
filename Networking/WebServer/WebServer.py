@@ -21,7 +21,7 @@ class WebServer:
 
     def run(self):
         self.running = True
-        while self.running:
+        while self.is_running():
             print("Ready to serve ...")
             connection_socket, addr = self.server_socket.accept()
             utils.render_page(connection_socket)

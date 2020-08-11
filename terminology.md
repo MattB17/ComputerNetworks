@@ -9,6 +9,10 @@
 * **AQM algorithm:** Active Queue Management algorithm
   * algorithm for packet-dropping or marking
 * **ARQ protocols:**  Automatic Repeat reQuest protocols
+* **AS:** Autonomous System
+  * Routers within the same AS all run the same routing algorithm and have information about each other
+* **ASN:** Autonomous System Number
+  * A globally unique number that identifies an AS
 
 ### B
 * **BIOS:** Basic Input/Output System
@@ -107,6 +111,9 @@
 * **ONT:** Optical Network Terminator
 * **OS:** Operating System
 * **OSI:** Open Systems Interconnection
+* **OSPF:** Open Shortest Path First
+  * widely used for intra-AS routing in the internet
+  * a link-state protocol that uses flooding of link-state information and a Dijkstra's least-cost path algorithm
 
 ### P
 * **P2P:** Peer-to-Peer
