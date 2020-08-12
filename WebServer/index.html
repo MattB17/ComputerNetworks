@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Networking Documentation &mdash; Networking 0.1.0 documentation</title>
+  <title>Web Server &mdash; Networking 0.1.0 documentation</title>
   
 
   
@@ -17,12 +17,12 @@
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript">
           var DOCUMENTATION_OPTIONS = {
-              URL_ROOT:'./',
+              URL_ROOT:'../',
               VERSION:'0.1.0',
               LANGUAGE:'None',
               COLLAPSE_INDEX:false,
@@ -31,20 +31,21 @@
               SOURCELINK_SUFFIX: '.txt'
           };
       </script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
     
-    <script type="text/javascript" src="_static/js/theme.js"></script>
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Web Server" href="WebServer/index.html" /> 
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Web Server" href="web_server.html" />
+    <link rel="prev" title="Networking Documentation" href="../index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -58,7 +59,7 @@
           
 
           
-            <a href="#" class="icon icon-home"> Networking
+            <a href="../index.html" class="icon icon-home"> Networking
           
 
           
@@ -75,7 +76,7 @@
 
           
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -93,8 +94,12 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="WebServer/index.html">Web Server</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Web Server</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="web_server.html">Web Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">Utility Functions</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -109,7 +114,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">Networking</a>
+          <a href="../index.html">Networking</a>
         
       </nav>
 
@@ -138,15 +143,15 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="#">Docs</a> &raquo;</li>
+      <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Networking Documentation</li>
+      <li>Web Server</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/WebServer/index.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -159,30 +164,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="networking-documentation">
-<h1>Networking Documentation<a class="headerlink" href="#networking-documentation" title="Permalink to this headline">¶</a></h1>
-<p># Computer Networking
-This repository is based off the book [Computer Networking: A Top-Down Approach (7th Edition)](<a class="reference external" href="https://www.pearson.com/us/higher-education/program/Kurose-Computer-Networking-A-Top-Down-Approach-7th-Edition/PGM1101673.html">https://www.pearson.com/us/higher-education/program/Kurose-Computer-Networking-A-Top-Down-Approach-7th-Edition/PGM1101673.html</a>).</p>
-<p>The <cite>terminology.md</cite> file compiles common terms used in the book as well as other areas of computer networking.</p>
-<p>The <cite>ProgrammingAssignments</cite> folder holds a collection of socket programming exercises from the book implemented in Python. The specification for each exercise is given in a <cite>pdf</cite> file.</p>
+  <div class="section" id="module-Networking.WebServer">
+<span id="web-server"></span><h1>Web Server<a class="headerlink" href="#module-Networking.WebServer" title="Permalink to this headline">¶</a></h1>
+<p>Code implementing a simple web server that responds to requests in the
+browser. If the request references a stored HTML file then that file is
+rendered. Otherwise, a 404 error is returned.</p>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="WebServer/index.html">Web Server</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="WebServer/web_server.html">Web Server</a></li>
-<li class="toctree-l2"><a class="reference internal" href="WebServer/utils.html">Utility Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="web_server.html">Web Server</a><ul class="simple">
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Utility Functions</a></li>
 </ul>
 </div>
-</div>
-<div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
-<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
-<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
-</ul>
 </div>
 
 
@@ -193,8 +188,10 @@ This repository is based off the book [Computer Networking: A Top-Down Approach 
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="WebServer/index.html" class="btn btn-neutral float-right" title="Web Server" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="web_server.html" class="btn btn-neutral float-right" title="Web Server" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
+      
+        <a href="../index.html" class="btn btn-neutral float-left" title="Networking Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
