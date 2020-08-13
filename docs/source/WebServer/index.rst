@@ -3,6 +3,11 @@ Web Server
 
 .. automodule:: Networking.WebServer
 
+Example Usage
+
+.. literalinclude:: ../../../Networking/examples/run_server.py
+   :language: python
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
