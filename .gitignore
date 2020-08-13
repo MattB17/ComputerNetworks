@@ -4,3 +4,7 @@
 # Ignore cache files
 __pycache__/
 .cache/
+
+# Ignore egg files
+*.egg
+*.egg-info
