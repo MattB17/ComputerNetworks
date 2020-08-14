@@ -7,6 +7,7 @@ Networking Documentation
    :maxdepth: 2
    :caption: Contents:
 
+   Base/index
    WebServer/index
 
 
