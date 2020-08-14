@@ -5,7 +5,7 @@ Web Server
 
 Example Usage
 
-.. literalinclude:: ../../../Networking/examples/run_server.py
+.. literalinclude:: ../../../Networking/examples/WebServer/web_server.py
    :language: python
 
 .. toctree::
