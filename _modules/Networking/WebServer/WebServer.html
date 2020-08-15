@@ -163,11 +163,14 @@
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">socket</span>
 <span class="kn">from</span> <span class="nn">Networking.WebServer</span> <span class="k">import</span> <span class="n">utils</span>
+<span class="kn">from</span> <span class="nn">Networking.Base.NetworkServer</span> <span class="k">import</span> <span class="n">NetworkServer</span>
 
 
-<div class="viewcode-block" id="WebServer"><a class="viewcode-back" href="../../../WebServer/web_server.html#Networking.WebServer">[docs]</a><span class="k">class</span> <span class="nc">WebServer</span><span class="p">:</span>
+<div class="viewcode-block" id="WebServer"><a class="viewcode-back" href="../../../WebServer/web_server.html#Networking.WebServer.WebServer">[docs]</a><span class="k">class</span> <span class="nc">WebServer</span><span class="p">(</span><span class="n">NetworkServer</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Encapsulates the functionality of a web server.</span>
+
+<span class="sd">        WebServer is a derived class of the generic `NetworkServer`.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -188,47 +191,10 @@
 <span class="sd">            The socket used to run the server.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_host</span> <span class="o">=</span> <span class="n">host</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_port</span> <span class="o">=</span> <span class="n">port</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_running</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_server_socket</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_server_socket</span><span class="o">.</span><span class="n">bind</span><span class="p">((</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_server_socket</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
-<div class="viewcode-block" id="WebServer.get_host"><a class="viewcode-back" href="../../../WebServer/web_server.html#Networking.WebServer.get_host">[docs]</a>    <span class="k">def</span> <span class="nf">get_host</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;The host for the web server.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        str</span>
-<span class="sd">            A string identifying the host running the server.</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_host</span></div>
-
-<div class="viewcode-block" id="WebServer.get_port"><a class="viewcode-back" href="../../../WebServer/web_server.html#Networking.WebServer.get_port">[docs]</a>    <span class="k">def</span> <span class="nf">get_port</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;The port number for the web server.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        int</span>
-<span class="sd">            An integer identifying the port number for the server.</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_port</span></div>
-
-<div class="viewcode-block" id="WebServer.is_running"><a class="viewcode-back" href="../../../WebServer/web_server.html#Networking.WebServer.is_running">[docs]</a>    <span class="k">def</span> <span class="nf">is_running</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Specifies whether the server is currently running.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        bool</span>
-<span class="sd">            True if the server is currently running. Otherwise, False.</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_running</span></div>
-
-<div class="viewcode-block" id="WebServer.run"><a class="viewcode-back" href="../../../WebServer/web_server.html#Networking.WebServer.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="WebServer.run"><a class="viewcode-back" href="../../../WebServer/web_server.html#Networking.WebServer.WebServer.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Runs the web server.</span>
 
 <span class="sd">        Returns</span>
@@ -236,14 +202,14 @@
 <span class="sd">        None</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_running</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
         <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_running</span><span class="p">():</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ready to serve ...&quot;</span><span class="p">)</span>
             <span class="n">connection_socket</span><span class="p">,</span> <span class="n">addr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_server_socket</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span>
             <span class="n">utils</span><span class="o">.</span><span class="n">render_page</span><span class="p">(</span><span class="n">connection_socket</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="WebServer.close"><a class="viewcode-back" href="../../../WebServer/web_server.html#Networking.WebServer.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="WebServer.close"><a class="viewcode-back" href="../../../WebServer/web_server.html#Networking.WebServer.WebServer.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Closes the socket associated with the server.</span>
 
 <span class="sd">        Returns</span>
@@ -251,6 +217,7 @@
 <span class="sd">        None</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_server_socket</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div></div>
 </pre></div>
 
