@@ -1,4 +1,4 @@
-from Networking import WebServer
+from Networking.WebServer import WebServer
 import sys
 
 if __name__ == "__main__":

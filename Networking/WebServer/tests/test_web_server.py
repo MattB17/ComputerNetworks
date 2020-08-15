@@ -6,7 +6,7 @@ from Networking.WebServer.WebServer import WebServer
 from socket import AF_INET, SOCK_STREAM
 
 
-SOCKET_STR = "Networking.WebServer.WebServer.socket.socket"
+SOCKET_STR = "socket.socket"
 RENDER_STR = "Networking.WebServer.utils.render_page"
 
 
@@ -36,7 +36,7 @@ def test_instantiation(web_server):
 
 
 def test_is_running_gives_true(web_server):
-    web_server.running = True
+    web_server._running = True
     assert web_server.is_running()
 
 
