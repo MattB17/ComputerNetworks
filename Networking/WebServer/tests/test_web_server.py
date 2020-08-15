@@ -3,6 +3,7 @@ import sys
 import pytest
 from unittest.mock import MagicMock, patch, call
 from Networking.WebServer.WebServer import WebServer
+from Networking.Base.NetworkServer import NetworkServer
 from socket import AF_INET, SOCK_STREAM
 
 
@@ -23,21 +24,18 @@ def mock_server_socket():
 def web_server(mock_server_socket):
     with patch(SOCKET_STR, return_value=mock_server_socket) as mock_socket:
         server = WebServer('127.0.0.1', 8000)
-    mock_socket.assert_called_once_with(AF_INET, SOCK_STREAM)
-    mock_server_socket.bind.assert_called_once_with(('127.0.0.1', 8000))
     mock_server_socket.listen.assert_called_once_with(1)
     return server
+
+
+def test_correct_inheritance():
+    assert issubclass(WebServer, NetworkServer)
 
 
 def test_instantiation(web_server):
     assert web_server.get_host() == '127.0.0.1'
     assert web_server.get_port() == 8000
     assert not web_server.is_running()
-
-
-def test_is_running_gives_true(web_server):
-    web_server._running = True
-    assert web_server.is_running()
 
 
 @patch(RENDER_STR, side_effect=None)
@@ -75,5 +73,8 @@ def test_run_multiple(mock_render, web_server, mock_server_socket):
 
 
 def test_close(web_server, mock_server_socket):
+    web_server._running = True
+    assert web_server.is_running()
     web_server.close()
+    assert not web_server.is_running()
     mock_server_socket.close.assert_called_once()
