@@ -163,7 +163,6 @@
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">socket</span>
-<span class="kn">import</span> <span class="nn">random</span>
 <span class="kn">from</span> <span class="nn">Networking.Base.NetworkServer</span> <span class="k">import</span> <span class="n">NetworkServer</span>
 
 
@@ -216,7 +215,21 @@
 <span class="sd">            A float representing the server&#39;s reliability.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reliability</span></div></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reliability</span></div>
+
+<div class="viewcode-block" id="UDPServer.run"><a class="viewcode-back" href="../../../UDPPinger/udp_server.html#Networking.UDPPinger.UDPServer.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Runs the UDP server.</span>
+
+<span class="sd">        While running, the server receives, processes, and replies to</span>
+<span class="sd">        messages. Only a proportion of messages, equal to the server&#39;s</span>
+<span class="sd">        reliability, are successfully processed.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">()</span></div></div>
 </pre></div>
 
            </div>

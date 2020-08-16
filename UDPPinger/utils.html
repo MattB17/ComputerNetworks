@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>UDP Server &mdash; Networking 0.1.0 documentation</title>
+  <title>Utility Functions &mdash; Networking 0.1.0 documentation</title>
   
 
   
@@ -43,8 +43,7 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="UDP Pinger" href="index.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -97,10 +96,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../Base/index.html">Base Networking Functionality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../WebServer/index.html">Web Server</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">UDP Pinger</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">UDP Server</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="utils.html">Utility Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="udp_server.html">UDP Server</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Utility Functions</a></li>
 </ul>
 </li>
 </ul>
@@ -150,13 +147,13 @@
         
           <li><a href="index.html">UDP Pinger</a> &raquo;</li>
         
-      <li>UDP Server</li>
+      <li>Utility Functions</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/UDPPinger/udp_server.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/UDPPinger/utils.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -169,52 +166,30 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-Networking.UDPPinger.UDPServer">
-<span id="udp-server"></span><h1>UDP Server<a class="headerlink" href="#module-Networking.UDPPinger.UDPServer" title="Permalink to this headline">¶</a></h1>
-<p>The UDPServer class implements a server using the UDP protocol.</p>
-<dl class="class">
-<dt id="Networking.UDPPinger.UDPServer">
-<em class="property">class </em><code class="descclassname">Networking.UDPPinger.</code><code class="descname">UDPServer</code><span class="sig-paren">(</span><em>host</em>, <em>port</em>, <em>reliability</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/UDPServer.html#UDPServer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.UDPServer" title="Permalink to this definition">¶</a></dt>
-<dd><p class="rubric">Methods</p>
-<table border="1" class="longtable docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_host</span></code>()</td>
-<td>The host for the server.</td>
-</tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">get_port</span></code>()</td>
-<td>The port number for the server.</td>
-</tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_reliability</span></code>()</td>
-<td>Gives the reliability of the server.</td>
-</tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">is_running</span></code>()</td>
-<td>Specifies whether the server is currently running.</td>
-</tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">run</span></code>()</td>
-<td>Runs the UDP server.</td>
-</tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">stop</span></code>()</td>
-<td>Stops the server from running.</td>
-</tr>
-</tbody>
-</table>
-<dl class="method">
-<dt id="Networking.UDPPinger.UDPServer.get_reliability">
-<code class="descname">get_reliability</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/UDPServer.html#UDPServer.get_reliability"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.UDPServer.get_reliability" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gives the reliability of the server.</p>
-<p>The reliability is a float between 0 and 1 representing the long run
-proportion of packets that are successfully received by the server.</p>
+  <div class="section" id="module-Networking.UDPPinger.utils">
+<span id="utility-functions"></span><h1>Utility Functions<a class="headerlink" href="#module-Networking.UDPPinger.utils" title="Permalink to this headline">¶</a></h1>
+<p>A collection of utility functions used to implement the UDP protocol for
+a UDP Pinger.</p>
+<dl class="function">
+<dt id="Networking.UDPPinger.utils.create_pong">
+<code class="descclassname">Networking.UDPPinger.utils.</code><code class="descname">create_pong</code><span class="sig-paren">(</span><em>message_lst</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/utils.html#create_pong"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.utils.create_pong" title="Permalink to this definition">¶</a></dt>
+<dd><p>Modifies <cite>message_lst</cite> to create the components of a pong message.</p>
+<p>That is, a list is constructed representing a pong (a response) to
+<cite>message_lst</cite>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">float</p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>message_lst: list</strong></p>
+<blockquote>
+<div><p>A list representing the message to be replied to.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">list</p>
 <blockquote class="last">
-<div><p>A float representing the server’s reliability.</p>
+<div><p>A list with the components of a pong message which represents the
+reply to <cite>message_lst</cite>.</p>
 </div></blockquote>
 </td>
 </tr>
@@ -222,23 +197,30 @@ proportion of packets that are successfully received by the server.</p>
 </table>
 </dd></dl>
 
-<dl class="method">
-<dt id="Networking.UDPPinger.UDPServer.run">
-<code class="descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/UDPServer.html#UDPServer.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.UDPServer.run" title="Permalink to this definition">¶</a></dt>
-<dd><p>Runs the UDP server.</p>
-<p>While running, the server receives, processes, and replies to
-messages. Only a proportion of messages, equal to the server’s
-reliability, are successfully processed.</p>
+<dl class="function">
+<dt id="Networking.UDPPinger.utils.process_message">
+<code class="descclassname">Networking.UDPPinger.utils.</code><code class="descname">process_message</code><span class="sig-paren">(</span><em>message</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/utils.html#process_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.utils.process_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Processes the message given by <cite>message</cite>.</p>
+<p><cite>message</cite> is a message received by a UDP node. The message is
+processed in order to derive a response message.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>message: str</strong></p>
+<blockquote>
+<div><p>A string representing a message received by a UDP node.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">str</p>
+<blockquote class="last">
+<div><p>A string representing the node’s response to <cite>message</cite>.</p>
+</div></blockquote>
+</td>
 </tr>
 </tbody>
 </table>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -248,13 +230,6 @@ reliability, are successfully processed.</p>
            
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-      
-        <a href="index.html" class="btn btn-neutral float-left" title="UDP Pinger" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>
