@@ -2,7 +2,6 @@
 
 """
 import socket
-import random
 from Networking.Base.NetworkServer import NetworkServer
 
 
@@ -56,3 +55,17 @@ class UDPServer(NetworkServer):
 
         """
         return self._reliability
+
+    def run(self):
+        """Runs the UDP server.
+
+        While running, the server receives, processes, and replies to
+        messages. Only a proportion of messages, equal to the server's
+        reliability, are successfully processed.
+
+        Returns
+        -------
+        None
+
+        """
+        super().run()
