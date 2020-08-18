@@ -3,6 +3,7 @@
 """
 import socket
 from Networking.Base.NetworkServer import NetworkServer
+from Networking.UDPPinger import utils
 
 
 class UDPServer(NetworkServer):
@@ -69,3 +70,8 @@ class UDPServer(NetworkServer):
 
         """
         super().run()
+        while self.is_running():
+            message, addr = self._server_socket.recvfrom(1024)
+            if not utils.will_drop_message(self._reliability):
+                self._server_socket.sendto(
+                    utils.process_message(message.decode()).encode(), addr)

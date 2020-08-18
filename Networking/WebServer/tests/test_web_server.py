@@ -47,6 +47,7 @@ def test_run_once(mock_render, web_server, mock_server_socket):
     captured_prints = io.StringIO()
     sys.stdout = captured_prints
     web_server.run()
+    assert web_server.is_running.call_count == 2
     sys.stdout = sys.__stdout__
     mock_server_socket.accept.assert_called_once()
     mock_render.assert_called_once_with(mock_conn)
@@ -63,6 +64,7 @@ def test_run_multiple(mock_render, web_server, mock_server_socket):
     captured_prints = io.StringIO()
     sys.stdout = captured_prints
     web_server.run()
+    assert web_server.is_running.call_count == 4
     sys.stdout = sys.__stdout__
     assert mock_server_socket.accept.call_count == 3
     render_calls = [call(conn) for conn in conns]
