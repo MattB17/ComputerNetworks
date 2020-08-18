@@ -223,6 +223,34 @@ processed in order to derive a response message.</p>
 </table>
 </dd></dl>
 
+<dl class="function">
+<dt id="Networking.UDPPinger.utils.will_drop_message">
+<code class="descclassname">Networking.UDPPinger.utils.</code><code class="descname">will_drop_message</code><span class="sig-paren">(</span><em>reliability</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/utils.html#will_drop_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.utils.will_drop_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines if a message will be dropped by a UDP node.</p>
+<p>A message is deemed dropped if it is either not successfully
+received or is not successfully sent.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>reliability: float</strong></p>
+<blockquote>
+<div><p>A float representing the reliability of a UDP node. This is a
+number between 0 and 1 representing the long run proportion
+of messages dropped by the node.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">bool</p>
+<blockquote class="last">
+<div><p>True if the message will be dropped. Otherwise, False.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </div>
 
 
