@@ -2,6 +2,7 @@
 a UDP Pinger.
 
 """
+import random
 
 
 def create_pong(message_lst):
@@ -45,3 +46,26 @@ def process_message(message):
 
     """
     return " ".join(create_pong(message.upper().split()))
+
+
+def will_drop_message(reliability):
+    """Determines if a message will be dropped by a UDP node.
+
+    A message is deemed dropped if it is either not successfully
+    received or is not successfully sent.
+
+    Parameters
+    ----------
+    reliability: float
+        A float representing the reliability of a UDP node. This is a
+        number between 0 and 1 representing the long run proportion
+        of messages dropped by the node.
+
+    Returns
+    -------
+    bool
+        True if the message will be dropped. Otherwise, False.
+
+    """
+    r = random.randint(1, 100)
+    return r <= (1 - reliability) * 100
