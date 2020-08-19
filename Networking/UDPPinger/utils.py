@@ -3,6 +3,31 @@ a UDP Pinger.
 
 """
 import random
+from Networking.Base import exceptions as exc
+
+
+def validate_proportion(proportion):
+    """Validates that `proportion` corresponds to a valid proportion.
+
+    A proportion is valid if it is in the range [0, 1].
+
+    Parameters
+    ----------
+    proportion: float
+        The proportion to be validated.
+
+    Raises
+    ------
+    InvalidProportion
+        If `proportion` is not valid.
+
+    Returns
+    -------
+    None
+
+    """
+    if (proportion > 1) or (proportion < 0):
+        raise exc.InvalidProportion(proportion)
 
 
 def create_pong(message_lst):
