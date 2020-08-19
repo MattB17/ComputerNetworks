@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Base Networking Functionality &mdash; Networking 0.1.0 documentation</title>
+  <title>Exceptions &mdash; Networking 0.1.0 documentation</title>
   
 
   
@@ -43,9 +43,7 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Network Server" href="network_server.html" />
-    <link rel="prev" title="Networking Documentation" href="../index.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -94,12 +92,8 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Base Networking Functionality</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="network_server.html">Network Server</a></li>
-<li class="toctree-l2"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Base Networking Functionality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../WebServer/index.html">Web Server</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../UDPPinger/index.html">UDP Pinger</a></li>
 </ul>
@@ -147,13 +141,13 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Base Networking Functionality</li>
+      <li>Exceptions</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/Base/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/Base/exceptions.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -166,20 +160,28 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-Networking.Base">
-<span id="base-networking-functionality"></span><h1>Base Networking Functionality<a class="headerlink" href="#module-Networking.Base" title="Permalink to this headline">¶</a></h1>
-<p>A collection of methods and classes which are used across multiple network
-applications. These methods and objects abstract some functionality common to
-a variety of applications.</p>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="network_server.html">Network Server</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
-</ul>
-</div>
+  <div class="section" id="module-Networking.Base.exceptions">
+<span id="exceptions"></span><h1>Exceptions<a class="headerlink" href="#module-Networking.Base.exceptions" title="Permalink to this headline">¶</a></h1>
+<p>A collection of custom exceptions generated when dealing with the
+networking applications.</p>
+<dl class="exception">
+<dt id="Networking.Base.exceptions.InvalidProportion">
+<em class="property">exception </em><code class="descclassname">Networking.Base.exceptions.</code><code class="descname">InvalidProportion</code><span class="sig-paren">(</span><em>prop</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/Base/exceptions.html#InvalidProportion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.Base.exceptions.InvalidProportion" title="Permalink to this definition">¶</a></dt>
+<dd><p>An Exception when <cite>prop</cite> does not correspond to a valid proportion.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>prop: float</strong></p>
+<blockquote class="last">
+<div><p>The number that generated the exception.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </div>
 
 
@@ -187,15 +189,6 @@ a variety of applications.</p>
            
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="network_server.html" class="btn btn-neutral float-right" title="Network Server" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="../index.html" class="btn btn-neutral float-left" title="Networking Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

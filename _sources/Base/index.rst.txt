@@ -8,3 +8,4 @@ Base Networking Functionality
    :caption: Contents:
 
    network_server
+   exceptions
