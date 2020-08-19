@@ -164,6 +164,31 @@
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">Networking.Base</span> <span class="k">import</span> <span class="n">exceptions</span> <span class="k">as</span> <span class="n">exc</span>
+
+
+<div class="viewcode-block" id="validate_proportion"><a class="viewcode-back" href="../../../UDPPinger/utils.html#Networking.UDPPinger.utils.validate_proportion">[docs]</a><span class="k">def</span> <span class="nf">validate_proportion</span><span class="p">(</span><span class="n">proportion</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Validates that `proportion` corresponds to a valid proportion.</span>
+
+<span class="sd">    A proportion is valid if it is in the range [0, 1].</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    proportion: float</span>
+<span class="sd">        The proportion to be validated.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    InvalidProportion</span>
+<span class="sd">        If `proportion` is not valid.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">proportion</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">proportion</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">exc</span><span class="o">.</span><span class="n">InvalidProportion</span><span class="p">(</span><span class="n">proportion</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="create_pong"><a class="viewcode-back" href="../../../UDPPinger/utils.html#Networking.UDPPinger.utils.create_pong">[docs]</a><span class="k">def</span> <span class="nf">create_pong</span><span class="p">(</span><span class="n">message_lst</span><span class="p">):</span>

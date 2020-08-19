@@ -224,6 +224,34 @@ processed in order to derive a response message.</p>
 </dd></dl>
 
 <dl class="function">
+<dt id="Networking.UDPPinger.utils.validate_proportion">
+<code class="descclassname">Networking.UDPPinger.utils.</code><code class="descname">validate_proportion</code><span class="sig-paren">(</span><em>proportion</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/utils.html#validate_proportion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.utils.validate_proportion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validates that <cite>proportion</cite> corresponds to a valid proportion.</p>
+<p>A proportion is valid if it is in the range [0, 1].</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>proportion: float</strong></p>
+<blockquote>
+<div><p>The proportion to be validated.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><p class="first"><strong>InvalidProportion</strong></p>
+<blockquote class="last">
+<div><p>If <cite>proportion</cite> is not valid.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
 <dt id="Networking.UDPPinger.utils.will_drop_message">
 <code class="descclassname">Networking.UDPPinger.utils.</code><code class="descname">will_drop_message</code><span class="sig-paren">(</span><em>reliability</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/utils.html#will_drop_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.utils.will_drop_message" title="Permalink to this definition">¶</a></dt>
 <dd><p>Determines if a message will be dropped by a UDP node.</p>
