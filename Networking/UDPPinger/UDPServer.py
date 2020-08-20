@@ -40,6 +40,7 @@ class UDPServer(NetworkServer):
             the long run proportion of packets that are successfully received.
 
         """
+        utils.validate_proportion(reliability)
         super().__init__(host, port, socket.AF_INET, socket.SOCK_DGRAM)
         self._reliability = reliability
 

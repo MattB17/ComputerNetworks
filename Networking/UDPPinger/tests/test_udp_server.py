@@ -2,12 +2,14 @@ import pytest
 from unittest.mock import MagicMock, patch, call
 from Networking.UDPPinger.UDPServer import UDPServer
 from Networking.Base.NetworkServer import NetworkServer
+from Networking.Base import exceptions as exc
 from socket import AF_INET, SOCK_DGRAM
 
 
 SOCKET_STR = "socket.socket"
 DROP_STR = "Networking.UDPPinger.utils.will_drop_message"
 PROCESS_STR = "Networking.UDPPinger.utils.process_message"
+VALIDATE_STR = "Networking.UDPPinger.utils.validate_proportion"
 
 
 @pytest.fixture(scope="function")
@@ -20,8 +22,10 @@ def mock_server_socket():
 
 @pytest.fixture(scope="function")
 def mostly_reliable_server(mock_server_socket):
-    with patch(SOCKET_STR, return_value=mock_server_socket):
+    with patch(SOCKET_STR, return_value=mock_server_socket), \
+        patch(VALIDATE_STR, side_effect=None) as mock_validate:
         server = UDPServer('127.0.0.1', 8080, 0.7)
+    mock_validate.assert_called_once_with(0.7)
     return server
 
 
@@ -34,6 +38,13 @@ def test_instantiation(mostly_reliable_server):
     assert mostly_reliable_server.get_port() == 8080
     assert not mostly_reliable_server.is_running()
     assert mostly_reliable_server.get_reliability() == 0.7
+
+
+@patch(VALIDATE_STR, side_effect=exc.InvalidProportion(1.2))
+def test_instantiation_gives_error(mock_validate):
+    with pytest.raises(exc.InvalidProportion):
+        UDPServer('123.45.62.111', 6259, 1.2)
+    mock_validate.assert_called_once_with(1.2)
 
 
 @patch(DROP_STR, return_value=False)
