@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Overview: module code &mdash; Networking 0.1.0 documentation</title>
+  <title>UDP Client &mdash; Networking 0.1.0 documentation</title>
   
 
   
@@ -95,7 +95,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Base/index.html">Base Networking Functionality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../WebServer/index.html">Web Server</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../UDPPinger/index.html">UDP Pinger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">UDP Pinger</a></li>
 </ul>
 
             
@@ -141,10 +141,14 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Overview: module code</li>
+      <li>UDP Client</li>
     
     
       <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/UDPPinger/udp_client.rst.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
     
@@ -156,14 +160,73 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>All modules for which code is available</h1>
-<ul><li><a href="Networking/Base/NetworkServer.html">Networking.Base.NetworkServer</a></li>
-<li><a href="Networking/Base/exceptions.html">Networking.Base.exceptions</a></li>
-<li><a href="Networking/UDPPinger/UDPClient.html">Networking.UDPPinger.UDPClient</a></li>
-<li><a href="Networking/UDPPinger/UDPServer.html">Networking.UDPPinger.UDPServer</a></li>
-<li><a href="Networking/UDPPinger/utils.html">Networking.UDPPinger.utils</a></li>
-<li><a href="Networking/WebServer/WebServer.html">Networking.WebServer.WebServer</a></li>
-</ul>
+  <div class="section" id="module-Networking.UDPPinger.UDPClient">
+<span id="udp-client"></span><h1>UDP Client<a class="headerlink" href="#module-Networking.UDPPinger.UDPClient" title="Permalink to this headline">¶</a></h1>
+<p>The UDPClient class implements a client using the UDP Protocol.</p>
+<dl class="class">
+<dt id="Networking.UDPPinger.UDPClient">
+<em class="property">class </em><code class="descclassname">Networking.UDPPinger.</code><code class="descname">UDPClient</code><span class="sig-paren">(</span><em>timeout</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/UDPClient.html#UDPClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.UDPClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implements a UDP Client that waits <cite>timeout</cite> seconds for responses.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>timeout: int</strong></p>
+<blockquote class="last">
+<div><p>The number of seconds that the client waits for a response to a
+message it has sent.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="44%" />
+<col width="56%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>_client_socket: socket.socket</strong></td>
+<td>The socket that the client interacts with.</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_socket_timeout</span></code>()</td>
+<td>Retrieves the timeout set on the client’s socket.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="Networking.UDPPinger.UDPClient.get_socket_timeout">
+<code class="descname">get_socket_timeout</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/UDPClient.html#UDPClient.get_socket_timeout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.UDPClient.get_socket_timeout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves the timeout set on the client’s socket.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">int</p>
+<blockquote class="last">
+<div><p>An integer corresponding to the number of seconds that the
+client’s socket waits for a response.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
 
            </div>
            

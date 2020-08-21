@@ -175,7 +175,57 @@
 <dl class="class">
 <dt id="Networking.UDPPinger.UDPServer">
 <em class="property">class </em><code class="descclassname">Networking.UDPPinger.</code><code class="descname">UDPServer</code><span class="sig-paren">(</span><em>host</em>, <em>port</em>, <em>reliability</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/UDPServer.html#UDPServer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.UDPServer" title="Permalink to this definition">¶</a></dt>
-<dd><p class="rubric">Methods</p>
+<dd><p>Implements a UDP Server of a given <cite>reliability</cite>.</p>
+<p>UDPServer is a dervived class of the generic NetworkServer.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>host: str</strong></p>
+<blockquote>
+<div><p>A string representing the host on which the server is run.</p>
+</div></blockquote>
+<p><strong>port: int</strong></p>
+<blockquote>
+<div><p>An integer representing the host on which the server is run.</p>
+</div></blockquote>
+<p><strong>reliability: float</strong></p>
+<blockquote class="last">
+<div><p>A float representing the reliability of the server. Values are
+between 0 and 1 giving the long run proportion of packets that
+are successfully received. That is, for a value of <cite>x</cite> the server
+will successfully receive <cite>100x</cite> percent of packets when running
+for a sufficiently long time.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>_host: str</strong></td>
+<td>The host on which the server runs.</td>
+</tr>
+<tr class="row-even"><td><strong>_port: int</strong></td>
+<td>The port on which the server runs.</td>
+</tr>
+<tr class="row-odd"><td><strong>_running: bool</strong></td>
+<td>Specifies whether the server is currently running.</td>
+</tr>
+<tr class="row-even"><td><strong>_server_socket: socket.socket</strong></td>
+<td>The socket used to run the server.</td>
+</tr>
+<tr class="row-odd"><td><strong>_reliability: float</strong></td>
+<td>The server’s reliability. A value between 0 and 1 representing the long run proportion of packets that are successfully received.</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
 <table border="1" class="longtable docutils">
 <colgroup>
 <col width="10%" />

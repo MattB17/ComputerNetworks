@@ -168,39 +168,39 @@
 
 
 <div class="viewcode-block" id="UDPServer"><a class="viewcode-back" href="../../../UDPPinger/udp_server.html#Networking.UDPPinger.UDPServer">[docs]</a><span class="k">class</span> <span class="nc">UDPServer</span><span class="p">(</span><span class="n">NetworkServer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Implements a UDP Server of a given `reliability`.</span>
+
+<span class="sd">    UDPServer is a dervived class of the generic NetworkServer.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    host: str</span>
+<span class="sd">        A string representing the host on which the server is run.</span>
+<span class="sd">    port: int</span>
+<span class="sd">        An integer representing the host on which the server is run.</span>
+<span class="sd">    reliability: float</span>
+<span class="sd">        A float representing the reliability of the server. Values are</span>
+<span class="sd">        between 0 and 1 giving the long run proportion of packets that</span>
+<span class="sd">        are successfully received. That is, for a value of `x` the server</span>
+<span class="sd">        will successfully receive `100x` percent of packets when running</span>
+<span class="sd">        for a sufficiently long time.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    _host: str</span>
+<span class="sd">        The host on which the server runs.</span>
+<span class="sd">    _port: int</span>
+<span class="sd">        The port on which the server runs.</span>
+<span class="sd">    _running: bool</span>
+<span class="sd">        Specifies whether the server is currently running.</span>
+<span class="sd">    _server_socket: socket.socket</span>
+<span class="sd">        The socket used to run the server.</span>
+<span class="sd">    _reliability: float</span>
+<span class="sd">        The server&#39;s reliability. A value between 0 and 1 representing</span>
+<span class="sd">        the long run proportion of packets that are successfully received.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">reliability</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Implements a UDP Server of a given `reliability`.</span>
-
-<span class="sd">        UDPServer is a dervived class of the generic NetworkServer.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        host: str</span>
-<span class="sd">            A string representing the host on which the server is run.</span>
-<span class="sd">        port: int</span>
-<span class="sd">            An integer representing the host on which the server is run.</span>
-<span class="sd">        reliability: float</span>
-<span class="sd">            A float representing the reliability of the server. Values are</span>
-<span class="sd">            between 0 and 1 giving the long run proportion of packets that</span>
-<span class="sd">            are successfully received. That is, for a value of `x` the server</span>
-<span class="sd">            will successfully receive `100x` percent of packets when running</span>
-<span class="sd">            for a sufficiently long time.</span>
-
-<span class="sd">        Attributes</span>
-<span class="sd">        ----------</span>
-<span class="sd">        _host: str</span>
-<span class="sd">            The host on which the server runs.</span>
-<span class="sd">        _port: int</span>
-<span class="sd">            The port on which the server runs.</span>
-<span class="sd">        _running: bool</span>
-<span class="sd">            Specifies whether the server is currently running.</span>
-<span class="sd">        _server_socket: socket.socket</span>
-<span class="sd">            The socket used to run the server.</span>
-<span class="sd">        _reliability: float</span>
-<span class="sd">            The server&#39;s reliability. A value between 0 and 1 representing</span>
-<span class="sd">            the long run proportion of packets that are successfully received.</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">utils</span><span class="o">.</span><span class="n">validate_proportion</span><span class="p">(</span><span class="n">reliability</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_DGRAM</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_reliability</span> <span class="o">=</span> <span class="n">reliability</span>
