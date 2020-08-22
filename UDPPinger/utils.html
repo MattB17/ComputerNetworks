@@ -224,6 +224,72 @@ processed in order to derive a response message.</p>
 </dd></dl>
 
 <dl class="function">
+<dt id="Networking.UDPPinger.utils.receive_and_decode_message">
+<code class="descclassname">Networking.UDPPinger.utils.</code><code class="descname">receive_and_decode_message</code><span class="sig-paren">(</span><em>socket</em>, <em>port</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/utils.html#receive_and_decode_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.utils.receive_and_decode_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives and decodes a message received through <cite>socket</cite> at <cite>port</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>socket: socket.socket</strong></p>
+<blockquote>
+<div><p>The socket at which the message is received</p>
+</div></blockquote>
+<p><strong>port: int</strong></p>
+<blockquote>
+<div><p>An integer representing the port number at which the message is
+received.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">string</p>
+<blockquote class="last">
+<div><p>A string representing the message received by <cite>socket</cite>, after it has
+been decoded.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Networking.UDPPinger.utils.send_ping_through_socket">
+<code class="descclassname">Networking.UDPPinger.utils.</code><code class="descname">send_ping_through_socket</code><span class="sig-paren">(</span><em>ping_count</em>, <em>socket</em>, <em>dest_host</em>, <em>dest_port</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/utils.html#send_ping_through_socket"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.utils.send_ping_through_socket" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends a ping message of count <cite>ping_count</cite> through <cite>socket</cite>.</p>
+<p>The ping message is sent through <cite>socket</cite> to the destination given by
+<cite>dest_host</cite> and <cite>dest_port</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>ping_count: int</strong></p>
+<blockquote>
+<div><p>An integer representing the ping count set in the sent message.</p>
+</div></blockquote>
+<p><strong>socket: socket.socket</strong></p>
+<blockquote>
+<div><p>The socket through which the ping message is sent.</p>
+</div></blockquote>
+<p><strong>dest_host: str</strong></p>
+<blockquote>
+<div><p>A string identifying the host name marking the message’s destination.</p>
+</div></blockquote>
+<p><strong>dest_port: int</strong></p>
+<blockquote>
+<div><p>An integer identifying the port number marking the message’s
+destination.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
 <dt id="Networking.UDPPinger.utils.validate_proportion">
 <code class="descclassname">Networking.UDPPinger.utils.</code><code class="descname">validate_proportion</code><span class="sig-paren">(</span><em>proportion</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/utils.html#validate_proportion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.utils.validate_proportion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Validates that <cite>proportion</cite> corresponds to a valid proportion.</p>
