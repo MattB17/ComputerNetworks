@@ -144,3 +144,35 @@ def receive_and_decode_message(socket, port):
     """
     received_message, from_addr = socket.recvfrom(port)
     return received_message.decode()
+
+
+def get_rtt_from_pong_message(pong_message, received_time):
+    """Calculates the round trip time based on `pong_message`.
+
+    `pong_message` is a space separated string consisting of 3 components.
+    The first identifies the message as a pong message (a ping response).
+    The second is the message count, and the third is the time at which
+    the ping message was sent. This third component is used to calculate
+    the round trip time.
+
+    Parameters
+    ----------
+    pong_message: str
+        A string representing a pong message.
+    received_time: datetime.datetime
+        A datetime representing the point in time at which `pong_message`
+        was received.
+
+    Returns
+    -------
+    int
+        An integer representing the round trip time (the time between when
+        the original ping was sent and when the pong was received) in
+        milliseconds.
+
+    """
+    sent_time_str = " ".join(pong_message.split()[2:])
+    sent_time = datetime.strptime(sent_time_str, "%Y-%m-%d %H:%M:%S.%f")
+    print(received_time)
+    print(sent_time)
+    return int((received_time - sent_time).total_seconds() * 1000)

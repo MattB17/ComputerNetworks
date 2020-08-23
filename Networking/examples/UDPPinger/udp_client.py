@@ -16,7 +16,7 @@ for i in range(10):
         print(modified_message)
         sent_time_str = " ".join(modified_message.split()[2:])
         sent_time = datetime.strptime(sent_time_str, "%Y-%m-%d %H:%M:%S.%f")
-        rtt = int(str(datetime.now() - sent_time).split(".")[1])
+        rtt = (datetime.now() - sent_time).microseconds
         print("RTT of {} ms".format(rtt))
     except socket.timeout:
         print("Request timed out")
