@@ -305,6 +305,38 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">received_message</span><span class="p">,</span> <span class="n">from_addr</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">recvfrom</span><span class="p">(</span><span class="n">port</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">received_message</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="get_rtt_from_pong_message"><a class="viewcode-back" href="../../../UDPPinger/utils.html#Networking.UDPPinger.utils.get_rtt_from_pong_message">[docs]</a><span class="k">def</span> <span class="nf">get_rtt_from_pong_message</span><span class="p">(</span><span class="n">pong_message</span><span class="p">,</span> <span class="n">received_time</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculates the round trip time based on `pong_message`.</span>
+
+<span class="sd">    `pong_message` is a space separated string consisting of 3 components.</span>
+<span class="sd">    The first identifies the message as a pong message (a ping response).</span>
+<span class="sd">    The second is the message count, and the third is the time at which</span>
+<span class="sd">    the ping message was sent. This third component is used to calculate</span>
+<span class="sd">    the round trip time.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pong_message: str</span>
+<span class="sd">        A string representing a pong message.</span>
+<span class="sd">    received_time: datetime.datetime</span>
+<span class="sd">        A datetime representing the point in time at which `pong_message`</span>
+<span class="sd">        was received.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    int</span>
+<span class="sd">        An integer representing the round trip time (the time between when</span>
+<span class="sd">        the original ping was sent and when the pong was received) in</span>
+<span class="sd">        milliseconds.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">sent_time_str</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pong_message</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">2</span><span class="p">:])</span>
+    <span class="n">sent_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">sent_time_str</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">received_time</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">sent_time</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">((</span><span class="n">received_time</span> <span class="o">-</span> <span class="n">sent_time</span><span class="p">)</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span></div>
 </pre></div>
 
            </div>

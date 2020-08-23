@@ -198,6 +198,42 @@ reply to <cite>message_lst</cite>.</p>
 </dd></dl>
 
 <dl class="function">
+<dt id="Networking.UDPPinger.utils.get_rtt_from_pong_message">
+<code class="descclassname">Networking.UDPPinger.utils.</code><code class="descname">get_rtt_from_pong_message</code><span class="sig-paren">(</span><em>pong_message</em>, <em>received_time</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/utils.html#get_rtt_from_pong_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.utils.get_rtt_from_pong_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the round trip time based on <cite>pong_message</cite>.</p>
+<p><cite>pong_message</cite> is a space separated string consisting of 3 components.
+The first identifies the message as a pong message (a ping response).
+The second is the message count, and the third is the time at which
+the ping message was sent. This third component is used to calculate
+the round trip time.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>pong_message: str</strong></p>
+<blockquote>
+<div><p>A string representing a pong message.</p>
+</div></blockquote>
+<p><strong>received_time: datetime.datetime</strong></p>
+<blockquote>
+<div><p>A datetime representing the point in time at which <cite>pong_message</cite>
+was received.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">int</p>
+<blockquote class="last">
+<div><p>An integer representing the round trip time (the time between when
+the original ping was sent and when the pong was received) in
+milliseconds.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
 <dt id="Networking.UDPPinger.utils.process_message">
 <code class="descclassname">Networking.UDPPinger.utils.</code><code class="descname">process_message</code><span class="sig-paren">(</span><em>message</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/utils.html#process_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.utils.process_message" title="Permalink to this definition">¶</a></dt>
 <dd><p>Processes the message given by <cite>message</cite>.</p>
