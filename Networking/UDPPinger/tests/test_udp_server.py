@@ -1,6 +1,6 @@
 import pytest
 from unittest.mock import MagicMock, patch, call
-from Networking.UDPPinger.UDPServer import UDPServer
+from Networking.UDPPinger.udp_server import UDPServer
 from Networking.Base.NetworkServer import NetworkServer
 from Networking.Base import exceptions as exc
 from socket import AF_INET, SOCK_DGRAM

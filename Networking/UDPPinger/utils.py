@@ -97,55 +97,6 @@ def will_drop_message(reliability):
     return r <= (1 - reliability) * 100
 
 
-def send_ping_through_socket(ping_count, socket, dest_host, dest_port):
-    """Sends a ping message of count `ping_count` through `socket`.
-
-    The ping message is sent through `socket` to the destination given by
-    `dest_host` and `dest_port`.
-
-    Parameters
-    ----------
-    ping_count: int
-        An integer representing the ping count set in the sent message.
-    socket: socket.socket
-        The socket through which the ping message is sent.
-    dest_host: str
-        A string identifying the host name marking the message's destination.
-    dest_port: int
-        An integer identifying the port number marking the message's
-        destination.
-
-    Returns
-    -------
-    None
-
-    """
-    message = "ping {0} {1}".format(ping_count, datetime.now())
-    socket.sendto(message.encode(), (dest_host, dest_port))
-
-
-def receive_and_decode_message(socket, port):
-    """Receives and decodes a message received through `socket` at `port`.
-
-    Parameters
-    ----------
-    socket: socket.socket
-        The socket at which the message is received
-    port: int
-        An integer representing the port number at which the message is
-        received.
-
-    Returns
-    -------
-    string
-        A string representing the message received by `socket`, after it has
-        been decoded.
-
-    """
-    received_message, from_addr = socket.recvfrom(port)
-    return received_message.decode()
-
-
 def get_rtt_from_pong_message(pong_message, received_time):
     """Calculates the round trip time based on `pong_message`.
 
