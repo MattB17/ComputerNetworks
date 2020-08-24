@@ -8,4 +8,5 @@ UDP Pinger
    :caption: Contents
 
    udp_server
+   udp_client
    utils

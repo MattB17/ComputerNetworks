@@ -258,55 +258,6 @@
     <span class="k">return</span> <span class="n">r</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">reliability</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span></div>
 
 
-<div class="viewcode-block" id="send_ping_through_socket"><a class="viewcode-back" href="../../../UDPPinger/utils.html#Networking.UDPPinger.utils.send_ping_through_socket">[docs]</a><span class="k">def</span> <span class="nf">send_ping_through_socket</span><span class="p">(</span><span class="n">ping_count</span><span class="p">,</span> <span class="n">socket</span><span class="p">,</span> <span class="n">dest_host</span><span class="p">,</span> <span class="n">dest_port</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Sends a ping message of count `ping_count` through `socket`.</span>
-
-<span class="sd">    The ping message is sent through `socket` to the destination given by</span>
-<span class="sd">    `dest_host` and `dest_port`.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    ping_count: int</span>
-<span class="sd">        An integer representing the ping count set in the sent message.</span>
-<span class="sd">    socket: socket.socket</span>
-<span class="sd">        The socket through which the ping message is sent.</span>
-<span class="sd">    dest_host: str</span>
-<span class="sd">        A string identifying the host name marking the message&#39;s destination.</span>
-<span class="sd">    dest_port: int</span>
-<span class="sd">        An integer identifying the port number marking the message&#39;s</span>
-<span class="sd">        destination.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    None</span>
-
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;ping </span><span class="si">{0}</span><span class="s2"> </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ping_count</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">())</span>
-    <span class="n">socket</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">encode</span><span class="p">(),</span> <span class="p">(</span><span class="n">dest_host</span><span class="p">,</span> <span class="n">dest_port</span><span class="p">))</span></div>
-
-
-<div class="viewcode-block" id="receive_and_decode_message"><a class="viewcode-back" href="../../../UDPPinger/utils.html#Networking.UDPPinger.utils.receive_and_decode_message">[docs]</a><span class="k">def</span> <span class="nf">receive_and_decode_message</span><span class="p">(</span><span class="n">socket</span><span class="p">,</span> <span class="n">port</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Receives and decodes a message received through `socket` at `port`.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    socket: socket.socket</span>
-<span class="sd">        The socket at which the message is received</span>
-<span class="sd">    port: int</span>
-<span class="sd">        An integer representing the port number at which the message is</span>
-<span class="sd">        received.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    string</span>
-<span class="sd">        A string representing the message received by `socket`, after it has</span>
-<span class="sd">        been decoded.</span>
-
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">received_message</span><span class="p">,</span> <span class="n">from_addr</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">recvfrom</span><span class="p">(</span><span class="n">port</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">received_message</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span></div>
-
-
 <div class="viewcode-block" id="get_rtt_from_pong_message"><a class="viewcode-back" href="../../../UDPPinger/utils.html#Networking.UDPPinger.utils.get_rtt_from_pong_message">[docs]</a><span class="k">def</span> <span class="nf">get_rtt_from_pong_message</span><span class="p">(</span><span class="n">pong_message</span><span class="p">,</span> <span class="n">received_time</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Calculates the round trip time based on `pong_message`.</span>
 

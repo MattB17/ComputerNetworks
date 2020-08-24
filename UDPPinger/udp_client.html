@@ -160,12 +160,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-Networking.UDPPinger.UDPClient">
-<span id="udp-client"></span><h1>UDP Client<a class="headerlink" href="#module-Networking.UDPPinger.UDPClient" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-Networking.UDPPinger.udp_client">
+<span id="udp-client"></span><h1>UDP Client<a class="headerlink" href="#module-Networking.UDPPinger.udp_client" title="Permalink to this headline">¶</a></h1>
 <p>The UDPClient class implements a client using the UDP Protocol.</p>
 <dl class="class">
 <dt id="Networking.UDPPinger.UDPClient">
-<em class="property">class </em><code class="descclassname">Networking.UDPPinger.</code><code class="descname">UDPClient</code><span class="sig-paren">(</span><em>timeout</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/UDPClient.html#UDPClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.UDPClient" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">Networking.UDPPinger.</code><code class="descname">UDPClient</code><span class="sig-paren">(</span><em>timeout</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/udp_client.html#UDPClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.UDPClient" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implements a UDP Client that waits <cite>timeout</cite> seconds for responses.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -202,11 +202,17 @@ message it has sent.</p>
 <tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_socket_timeout</span></code>()</td>
 <td>Retrieves the timeout set on the client’s socket.</td>
 </tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">receive_and_decode_message</span></code>(recv_port)</td>
+<td>Receives a message on <cite>recv_port</cite> and decodes the message.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">send_ping</span></code>(ping_number,&nbsp;dest_host,&nbsp;dest_port)</td>
+<td>Sends a ping message with number <cite>ping_number</cite> to <cite>dest_host</cite>.</td>
+</tr>
 </tbody>
 </table>
 <dl class="method">
 <dt id="Networking.UDPPinger.UDPClient.get_socket_timeout">
-<code class="descname">get_socket_timeout</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/UDPClient.html#UDPClient.get_socket_timeout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.UDPClient.get_socket_timeout" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_socket_timeout</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/udp_client.html#UDPClient.get_socket_timeout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.UDPClient.get_socket_timeout" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieves the timeout set on the client’s socket.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -217,6 +223,65 @@ message it has sent.</p>
 <div><p>An integer corresponding to the number of seconds that the
 client’s socket waits for a response.</p>
 </div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Networking.UDPPinger.UDPClient.receive_and_decode_message">
+<code class="descname">receive_and_decode_message</code><span class="sig-paren">(</span><em>recv_port</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/udp_client.html#UDPClient.receive_and_decode_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.UDPClient.receive_and_decode_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives a message on <cite>recv_port</cite> and decodes the message.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>recv_port: int</strong></p>
+<blockquote>
+<div><p>The port at which the message is received on.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">str</p>
+<blockquote>
+<div><p>A string representing the decoded message received on <cite>recv_port</cite>.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><p class="first"><strong>socket.timeout</strong></p>
+<blockquote class="last">
+<div><p>If the socket times out waiting for a message.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Networking.UDPPinger.UDPClient.send_ping">
+<code class="descname">send_ping</code><span class="sig-paren">(</span><em>ping_number</em>, <em>dest_host</em>, <em>dest_port</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/udp_client.html#UDPClient.send_ping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.UDPClient.send_ping" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends a ping message with number <cite>ping_number</cite> to <cite>dest_host</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>ping_number: int</strong></p>
+<blockquote>
+<div><p>The ping number to be sent in the message.</p>
+</div></blockquote>
+<p><strong>dest_host: str</strong></p>
+<blockquote>
+<div><p>A string representing the host to which the message is sent.</p>
+</div></blockquote>
+<p><strong>dest_port: int</strong></p>
+<blockquote>
+<div><p>An integer representing the port to which the message is sent.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
 </td>
 </tr>
 </tbody>

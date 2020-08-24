@@ -169,12 +169,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-Networking.UDPPinger.UDPServer">
-<span id="udp-server"></span><h1>UDP Server<a class="headerlink" href="#module-Networking.UDPPinger.UDPServer" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-Networking.UDPPinger.udp_server">
+<span id="udp-server"></span><h1>UDP Server<a class="headerlink" href="#module-Networking.UDPPinger.udp_server" title="Permalink to this headline">¶</a></h1>
 <p>The UDPServer class implements a server using the UDP protocol.</p>
 <dl class="class">
 <dt id="Networking.UDPPinger.UDPServer">
-<em class="property">class </em><code class="descclassname">Networking.UDPPinger.</code><code class="descname">UDPServer</code><span class="sig-paren">(</span><em>host</em>, <em>port</em>, <em>reliability</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/UDPServer.html#UDPServer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.UDPServer" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">Networking.UDPPinger.</code><code class="descname">UDPServer</code><span class="sig-paren">(</span><em>host</em>, <em>port</em>, <em>reliability</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/udp_server.html#UDPServer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.UDPServer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implements a UDP Server of a given <cite>reliability</cite>.</p>
 <p>UDPServer is a dervived class of the generic NetworkServer.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -254,7 +254,7 @@ for a sufficiently long time.</p>
 </table>
 <dl class="method">
 <dt id="Networking.UDPPinger.UDPServer.get_reliability">
-<code class="descname">get_reliability</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/UDPServer.html#UDPServer.get_reliability"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.UDPServer.get_reliability" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_reliability</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/udp_server.html#UDPServer.get_reliability"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.UDPServer.get_reliability" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gives the reliability of the server.</p>
 <p>The reliability is a float between 0 and 1 representing the long run
 proportion of packets that are successfully received by the server.</p>
@@ -274,7 +274,7 @@ proportion of packets that are successfully received by the server.</p>
 
 <dl class="method">
 <dt id="Networking.UDPPinger.UDPServer.run">
-<code class="descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/UDPServer.html#UDPServer.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.UDPServer.run" title="Permalink to this definition">¶</a></dt>
+<code class="descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/udp_server.html#UDPServer.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.UDPServer.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Runs the UDP server.</p>
 <p>While running, the server receives, processes, and replies to
 messages. Only a proportion of messages, equal to the server’s
