@@ -3,6 +3,7 @@
 """
 import socket
 import datetime
+from Networking.UDPPinger import utils
 
 
 class UDPClient:
@@ -77,3 +78,39 @@ class UDPClient:
         """
         received_message, from_addr = self._client_socket.recvfrom(recv_port)
         return received_message.decode()
+
+    def send_ping_wait_for_response(self, ping_number, dest_host,
+                                    dest_port, recv_port):
+        """Sends a ping message with `ping_number` and waits for a response.
+
+        The message is sent to the node identified by `dest_host` and
+        `dest_port` and the socket waits for a response at `recv_port`. If
+        the socket times out a message is printed to the console indicating
+        that this is the case. Otherwise, the received message and round trip
+        time are printed to the console.
+
+        Parameters
+        ----------
+        ping_number: int
+            The number specified in the ping message.
+        dest_host: str
+            A string representing the host to which the message is sent.
+        dest_port: int
+            An integer representing the port to which the message is sent.
+        recv_port: int
+            The port at which the reply message is received on.
+
+        Returns
+        -------
+        None
+
+        """
+        self.send_ping(ping_number, dest_host, dest_port)
+        try:
+            reply_message = self.receive_and_decode_message(recv_port)
+            reply_time = datetime.now()
+            print(reply_message)
+            print("RTT of {} ms".format(
+                utils.get_rtt_from_pong_message(reply_message, reply_time)))
+        except socket.timeout:
+            print("Request timed out")
