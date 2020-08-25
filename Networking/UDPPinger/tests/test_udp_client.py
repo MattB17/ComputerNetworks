@@ -2,7 +2,7 @@ import pytest
 import datetime
 import sys
 import io
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock, patch, call
 from Networking.UDPPinger.udp_client import UDPClient
 from socket import AF_INET, SOCK_DGRAM, timeout
 
@@ -92,7 +92,7 @@ def test_send_ping_wait_for_response_exception(mock_udp_client):
     mock_udp_client.send_ping.assert_called_once_with(3, "SomeHost", 1234)
     mock_udp_client.receive_and_decode_message.assert_called_once_with(1024)
     mock_rtt.assert_not_called()
-    assert str(captured_output.getvalue()) == "Request timed out\n"
+    assert str(captured_output.getvalue()) == "Request timed out\n\n"
 
 
 def test_send_ping_wait_for_response_no_exception(mock_udp_client,
@@ -109,5 +109,20 @@ def test_send_ping_wait_for_response_no_exception(mock_udp_client,
     mock_udp_client.send_ping.assert_called_once_with(5, "AHost", 5678)
     mock_udp_client.receive_and_decode_message.assert_called_once_with(2048)
     mock_rtt.assert_called_once_with(received_message, FAKE_NOW)
-    assert str(captured_output.getvalue()) == "{}\nRTT of 2500 ms\n".format(
+    assert str(captured_output.getvalue()) == "{}\nRTT of 2500 ms\n\n".format(
         received_message)
+
+
+def test_send_ping_sequence_one_ping(mock_udp_client):
+    mock_udp_client.send_ping_wait_for_response = MagicMock(side_effect=None)
+    mock_udp_client.send_ping_sequence(1, "SomeHost", 1234, 1024)
+    mock_udp_client.send_ping_wait_for_response.assert_called_once_with(
+        0, "SomeHost", 1234, 1024)
+
+
+def test_send_ping_sequence_multi_pings(mock_udp_client):
+    mock_udp_client.send_ping_wait_for_response = MagicMock(side_effect=None)
+    mock_udp_client.send_ping_sequence(5, "AHost", 5678, 2048)
+    send_calls = [call(i, "AHost", 5678, 2048) for i in range(5)]
+    assert mock_udp_client.send_ping_wait_for_response.call_count == 5
+    mock_udp_client.send_ping_wait_for_response.assert_has_calls(send_calls)

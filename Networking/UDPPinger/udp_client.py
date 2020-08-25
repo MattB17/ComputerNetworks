@@ -63,7 +63,7 @@ class UDPClient:
         Parameters
         ----------
         recv_port: int
-            The port at which the message is received on.
+            The port at which the message is received.
 
         Raises
         ------
@@ -98,7 +98,7 @@ class UDPClient:
         dest_port: int
             An integer representing the port to which the message is sent.
         recv_port: int
-            The port at which the reply message is received on.
+            The port at which the reply message is received.
 
         Returns
         -------
@@ -110,7 +110,36 @@ class UDPClient:
             reply_message = self.receive_and_decode_message(recv_port)
             reply_time = datetime.now()
             print(reply_message)
-            print("RTT of {} ms".format(
+            print("RTT of {} ms\n".format(
                 utils.get_rtt_from_pong_message(reply_message, reply_time)))
         except socket.timeout:
-            print("Request timed out")
+            print("Request timed out\n")
+
+    def send_ping_sequence(self, num_pings, dest_host, dest_port, recv_port):
+        """Sends a sequence of ping messages to `dest_host` at `dest_port`.
+
+        A series of `num_pings` ping messages are constructed and sent to the
+        node identified by `dest_host` and `dest_port`. After sending each
+        ping, the client waits for a pong (response message) and prints the
+        message as well as the round trip time. If the socket times out
+        waiting for a response then a message is printed indicating this case.
+
+        Parameters
+        ----------
+        num_pings: int
+            The number of ping messages to be sent.
+        dest_host: str
+            A string representing the host to which the pings are sent.
+        dest_port: int
+            An integer representing the port to which the pings are sent.
+        recv_port: int
+            The port at which the pongs are received.
+
+        Returns
+        -------
+        None
+
+        """
+        for i in range(num_pings):
+            self.send_ping_wait_for_response(
+                i, dest_host, dest_port, recv_port)
