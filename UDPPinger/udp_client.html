@@ -217,7 +217,10 @@ message it has sent.</p>
 <tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">send_ping</span></code>(ping_number,&nbsp;dest_host,&nbsp;dest_port)</td>
 <td>Sends a ping message with number <cite>ping_number</cite> to <cite>dest_host</cite>.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">send_ping_wait_for_response</span></code>(ping_number,&nbsp;…)</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">send_ping_sequence</span></code>(num_pings,&nbsp;dest_host,&nbsp;…)</td>
+<td>Sends a sequence of ping messages to <cite>dest_host</cite> at <cite>dest_port</cite>.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">send_ping_wait_for_response</span></code>(ping_number,&nbsp;…)</td>
 <td>Sends a ping message with <cite>ping_number</cite> and waits for a response.</td>
 </tr>
 </tbody>
@@ -251,7 +254,7 @@ client’s socket waits for a response.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>recv_port: int</strong></p>
 <blockquote>
-<div><p>The port at which the message is received on.</p>
+<div><p>The port at which the message is received.</p>
 </div></blockquote>
 </td>
 </tr>
@@ -301,6 +304,44 @@ client’s socket waits for a response.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="Networking.UDPPinger.UDPClient.send_ping_sequence">
+<code class="descname">send_ping_sequence</code><span class="sig-paren">(</span><em>num_pings</em>, <em>dest_host</em>, <em>dest_port</em>, <em>recv_port</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/udp_client.html#UDPClient.send_ping_sequence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.UDPClient.send_ping_sequence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends a sequence of ping messages to <cite>dest_host</cite> at <cite>dest_port</cite>.</p>
+<p>A series of <cite>num_pings</cite> ping messages are constructed and sent to the
+node identified by <cite>dest_host</cite> and <cite>dest_port</cite>. After sending each
+ping, the client waits for a pong (response message) and prints the
+message as well as the round trip time. If the socket times out
+waiting for a response then a message is printed indicating this case.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>num_pings: int</strong></p>
+<blockquote>
+<div><p>The number of ping messages to be sent.</p>
+</div></blockquote>
+<p><strong>dest_host: str</strong></p>
+<blockquote>
+<div><p>A string representing the host to which the pings are sent.</p>
+</div></blockquote>
+<p><strong>dest_port: int</strong></p>
+<blockquote>
+<div><p>An integer representing the port to which the pings are sent.</p>
+</div></blockquote>
+<p><strong>recv_port: int</strong></p>
+<blockquote>
+<div><p>The port at which the pongs are received.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="Networking.UDPPinger.UDPClient.send_ping_wait_for_response">
 <code class="descname">send_ping_wait_for_response</code><span class="sig-paren">(</span><em>ping_number</em>, <em>dest_host</em>, <em>dest_port</em>, <em>recv_port</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/udp_client.html#UDPClient.send_ping_wait_for_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.UDPClient.send_ping_wait_for_response" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sends a ping message with <cite>ping_number</cite> and waits for a response.</p>
@@ -327,7 +368,7 @@ time are printed to the console.</p>
 </div></blockquote>
 <p><strong>recv_port: int</strong></p>
 <blockquote>
-<div><p>The port at which the reply message is received on.</p>
+<div><p>The port at which the reply message is received.</p>
 </div></blockquote>
 </td>
 </tr>
