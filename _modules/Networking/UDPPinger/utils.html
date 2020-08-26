@@ -288,6 +288,29 @@
     <span class="nb">print</span><span class="p">(</span><span class="n">received_time</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">sent_time</span><span class="p">)</span>
     <span class="k">return</span> <span class="nb">int</span><span class="p">((</span><span class="n">received_time</span> <span class="o">-</span> <span class="n">sent_time</span><span class="p">)</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="validate_ping_count"><a class="viewcode-back" href="../../../UDPPinger/utils.html#Networking.UDPPinger.utils.validate_ping_count">[docs]</a><span class="k">def</span> <span class="nf">validate_ping_count</span><span class="p">(</span><span class="n">ping_count</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Validates that `ping_count` represents a valid number of pings to send.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ping_count: int</span>
+<span class="sd">        An integer representing the number of ping messages to be sent.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    InvalidPingCount</span>
+<span class="sd">        If `ping_count` does not represent a valid number of pings to send.</span>
+<span class="sd">        That is, if `ping_count` is less than or equal to 0.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">ping_count</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">exc</span><span class="o">.</span><span class="n">InvalidPingCount</span><span class="p">(</span><span class="n">ping_count</span><span class="p">)</span></div>
 </pre></div>
 
            </div>

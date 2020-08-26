@@ -296,11 +296,18 @@
 <span class="sd">        recv_port: int</span>
 <span class="sd">            The port at which the pongs are received.</span>
 
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        InvalidPingCount</span>
+<span class="sd">            If `num_pings` does not represent a valid number of ping messages</span>
+<span class="sd">            to send.</span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        None</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">utils</span><span class="o">.</span><span class="n">validate_ping_count</span><span class="p">(</span><span class="n">num_pings</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_pings</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">send_ping_wait_for_response</span><span class="p">(</span>
                 <span class="n">i</span><span class="p">,</span> <span class="n">dest_host</span><span class="p">,</span> <span class="n">dest_port</span><span class="p">,</span> <span class="n">recv_port</span><span class="p">)</span></div></div>

@@ -178,6 +178,25 @@
         <span class="n">message</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> is not a valid proportion. Please specify a number in &quot;</span>
                    <span class="s2">&quot;the range [0, 1].&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">prop</span><span class="p">))</span>
         <span class="ne">Exception</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="InvalidPingCount"><a class="viewcode-back" href="../../../Base/exceptions.html#Networking.Base.exceptions.InvalidPingCount">[docs]</a><span class="k">class</span> <span class="nc">InvalidPingCount</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;An Exception when `ping_count` is less than or equal to 0.</span>
+
+<span class="sd">    The Exception is generated when a class or method tries to send a</span>
+<span class="sd">    sequence of pings but the number of pings specified to be sent is</span>
+<span class="sd">    less than or equal to 0.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ping_count: int</span>
+<span class="sd">        The number of pings to be sent.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ping_count</span><span class="p">):</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> is not a valid number of pings. Please specify a &quot;</span>
+                   <span class="s2">&quot;number greater than or equal to 1.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ping_count</span><span class="p">))</span>
+        <span class="ne">Exception</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span></div>
 </pre></div>
 
            </div>
