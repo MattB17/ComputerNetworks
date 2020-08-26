@@ -285,9 +285,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">sent_time_str</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pong_message</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">2</span><span class="p">:])</span>
     <span class="n">sent_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">sent_time_str</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">received_time</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">sent_time</span><span class="p">)</span>
-    <span class="k">return</span> <span class="nb">int</span><span class="p">((</span><span class="n">received_time</span> <span class="o">-</span> <span class="n">sent_time</span><span class="p">)</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">((</span><span class="n">received_time</span> <span class="o">-</span> <span class="n">sent_time</span><span class="p">)</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000000</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="validate_ping_count"><a class="viewcode-back" href="../../../UDPPinger/utils.html#Networking.UDPPinger.utils.validate_ping_count">[docs]</a><span class="k">def</span> <span class="nf">validate_ping_count</span><span class="p">(</span><span class="n">ping_count</span><span class="p">):</span>

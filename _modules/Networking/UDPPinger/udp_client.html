@@ -163,7 +163,7 @@
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">socket</span>
-<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">Networking.UDPPinger</span> <span class="k">import</span> <span class="n">utils</span>
 
 
@@ -269,10 +269,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">send_ping</span><span class="p">(</span><span class="n">ping_number</span><span class="p">,</span> <span class="n">dest_host</span><span class="p">,</span> <span class="n">dest_port</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">reply_message</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">receive_and_decode_message</span><span class="p">(</span><span class="n">recv_port</span><span class="p">)</span>
-            <span class="n">reply_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">reply_message</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RTT of </span><span class="si">{}</span><span class="s2"> ms</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">utils</span><span class="o">.</span><span class="n">get_rtt_from_pong_message</span><span class="p">(</span><span class="n">reply_message</span><span class="p">,</span> <span class="n">reply_time</span><span class="p">)))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RTT of </span><span class="si">{}</span><span class="s2"> microseconds</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">utils</span><span class="o">.</span><span class="n">get_rtt_from_pong_message</span><span class="p">(</span>
+                    <span class="n">reply_message</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">())))</span>
         <span class="k">except</span> <span class="n">socket</span><span class="o">.</span><span class="n">timeout</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Request timed out</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span></div>
 

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Web Server &mdash; Networking 0.1.0 documentation</title>
+  <title>Example Usage &mdash; Networking 0.1.0 documentation</title>
   
 
   
@@ -44,8 +44,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Web Server" href="web_server.html" />
-    <link rel="prev" title="Exceptions" href="../Base/exceptions.html" /> 
+    <link rel="prev" title="Utility Functions" href="utils.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -96,13 +95,14 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../Base/index.html">Base Networking Functionality</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Web Server</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="web_server.html">Web Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../WebServer/index.html">Web Server</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">UDP Pinger</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="udp_server.html">UDP Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="udp_client.html">UDP Client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="utils.html">Utility Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="example.html">Example Usage</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Example Usage</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../UDPPinger/index.html">UDP Pinger</a></li>
 </ul>
 
             
@@ -148,13 +148,15 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Web Server</li>
+          <li><a href="index.html">UDP Pinger</a> &raquo;</li>
+        
+      <li>Example Usage</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/WebServer/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/UDPPinger/example.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -167,20 +169,28 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-Networking.WebServer">
-<span id="web-server"></span><h1>Web Server<a class="headerlink" href="#module-Networking.WebServer" title="Permalink to this headline">¶</a></h1>
-<p>Code implementing a simple web server that responds to requests in the
-browser. If the request references a stored HTML file then that file is
-rendered. Otherwise, a 404 error is returned.</p>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="web_server.html">Web Server</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="utils.html">Utility Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="example.html">Example Usage</a></li>
-</ul>
+  <div class="section" id="example-usage">
+<h1>Example Usage<a class="headerlink" href="#example-usage" title="Permalink to this headline">¶</a></h1>
+<p>The following is an example of running the <cite>UDPPinger</cite> application.</p>
+<ol class="arabic simple">
+<li>Run the <cite>UDPServer</cite> in one process:</li>
+</ol>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">Networking.UDPPinger</span> <span class="kn">import</span> <span class="n">UDPServer</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">server</span> <span class="o">=</span> <span class="n">UDPServer</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">12000</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">)</span>
+    <span class="n">server</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li>Run the <cite>UDPClient</cite> in a second process:</li>
+</ol>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">Networking.UDPPinger</span> <span class="kn">import</span> <span class="n">UDPClient</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">UDPClient</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">send_ping_sequence</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">12000</span><span class="p">,</span> <span class="mi">1024</span><span class="p">)</span>
+</pre></div>
 </div>
 </div>
 
@@ -192,10 +202,8 @@ rendered. Otherwise, a 404 error is returned.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="web_server.html" class="btn btn-neutral float-right" title="Web Server" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-      
-        <a href="../Base/exceptions.html" class="btn btn-neutral float-left" title="Exceptions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="utils.html" class="btn btn-neutral float-left" title="Utility Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
