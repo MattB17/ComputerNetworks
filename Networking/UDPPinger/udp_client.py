@@ -135,11 +135,18 @@ class UDPClient:
         recv_port: int
             The port at which the pongs are received.
 
+        Raises
+        ------
+        InvalidPingCount
+            If `num_pings` does not represent a valid number of ping messages
+            to send.
+
         Returns
         -------
         None
 
         """
+        utils.validate_ping_count(num_pings)
         for i in range(num_pings):
             self.send_ping_wait_for_response(
                 i, dest_host, dest_port, recv_port)

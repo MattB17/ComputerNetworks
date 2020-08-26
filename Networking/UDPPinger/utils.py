@@ -127,3 +127,26 @@ def get_rtt_from_pong_message(pong_message, received_time):
     print(received_time)
     print(sent_time)
     return int((received_time - sent_time).total_seconds() * 1000)
+
+
+def validate_ping_count(ping_count):
+    """Validates that `ping_count` represents a valid number of pings to send.
+
+    Parameters
+    ----------
+    ping_count: int
+        An integer representing the number of ping messages to be sent.
+
+    Raises
+    ------
+    InvalidPingCount
+        If `ping_count` does not represent a valid number of pings to send.
+        That is, if `ping_count` is less than or equal to 0.
+
+    Returns
+    -------
+    None
+
+    """
+    if ping_count <= 0:
+        raise exc.InvalidPingCount(ping_count)

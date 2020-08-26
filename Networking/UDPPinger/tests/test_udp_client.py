@@ -2,6 +2,7 @@ import pytest
 import datetime
 import sys
 import io
+from Networking.Base import exceptions as exc
 from unittest.mock import MagicMock, patch, call
 from Networking.UDPPinger.udp_client import UDPClient
 from socket import AF_INET, SOCK_DGRAM, timeout
@@ -10,6 +11,7 @@ from socket import AF_INET, SOCK_DGRAM, timeout
 SOCKET_STR = "socket.socket"
 FAKE_NOW = datetime.datetime(2020, 8, 22, 19, 12, 17, 701474)
 RTT_STR = "Networking.UDPPinger.utils.get_rtt_from_pong_message"
+PING_STR = "Networking.UDPPinger.utils.validate_ping_count"
 
 
 @pytest.fixture(scope="function")
@@ -113,16 +115,29 @@ def test_send_ping_wait_for_response_no_exception(mock_udp_client,
         received_message)
 
 
-def test_send_ping_sequence_one_ping(mock_udp_client):
+@patch(PING_STR, side_effect=None)
+def test_send_ping_sequence_one_ping(mock_ping, mock_udp_client):
     mock_udp_client.send_ping_wait_for_response = MagicMock(side_effect=None)
     mock_udp_client.send_ping_sequence(1, "SomeHost", 1234, 1024)
+    mock_ping.assert_called_once_with(1)
     mock_udp_client.send_ping_wait_for_response.assert_called_once_with(
         0, "SomeHost", 1234, 1024)
 
 
-def test_send_ping_sequence_multi_pings(mock_udp_client):
+@patch(PING_STR, side_effect=None)
+def test_send_ping_sequence_multi_pings(mock_ping, mock_udp_client):
     mock_udp_client.send_ping_wait_for_response = MagicMock(side_effect=None)
     mock_udp_client.send_ping_sequence(5, "AHost", 5678, 2048)
+    mock_ping.assert_called_once_with(5)
     send_calls = [call(i, "AHost", 5678, 2048) for i in range(5)]
     assert mock_udp_client.send_ping_wait_for_response.call_count == 5
     mock_udp_client.send_ping_wait_for_response.assert_has_calls(send_calls)
+
+
+def test_send_ping_sequence_with_exception(mock_udp_client):
+    mock_udp_client.send_ping_wait_for_response = MagicMock()
+    with patch(PING_STR, side_effect=exc.InvalidPingCount(-3)) as mock_ping:
+        with pytest.raises(exc.InvalidPingCount):
+            mock_udp_client.send_ping_sequence(-3, "127.0.0.1", 4444, 3072)
+    mock_ping.assert_called_once_with(-3)
+    mock_udp_client.send_ping_wait_for_response.assert_not_called()
