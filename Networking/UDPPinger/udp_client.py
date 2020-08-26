@@ -2,7 +2,7 @@
 
 """
 import socket
-import datetime
+from datetime import datetime
 from Networking.UDPPinger import utils
 
 
@@ -108,10 +108,10 @@ class UDPClient:
         self.send_ping(ping_number, dest_host, dest_port)
         try:
             reply_message = self.receive_and_decode_message(recv_port)
-            reply_time = datetime.now()
             print(reply_message)
-            print("RTT of {} ms\n".format(
-                utils.get_rtt_from_pong_message(reply_message, reply_time)))
+            print("RTT of {} microseconds\n".format(
+                utils.get_rtt_from_pong_message(
+                    reply_message, datetime.now())))
         except socket.timeout:
             print("Request timed out\n")
 

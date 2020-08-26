@@ -111,8 +111,8 @@ def test_send_ping_wait_for_response_no_exception(mock_udp_client,
     mock_udp_client.send_ping.assert_called_once_with(5, "AHost", 5678)
     mock_udp_client.receive_and_decode_message.assert_called_once_with(2048)
     mock_rtt.assert_called_once_with(received_message, FAKE_NOW)
-    assert str(captured_output.getvalue()) == "{}\nRTT of 2500 ms\n\n".format(
-        received_message)
+    assert (str(captured_output.getvalue()) ==
+            "{}\nRTT of 2500 microseconds\n\n".format(received_message))
 
 
 @patch(PING_STR, side_effect=None)

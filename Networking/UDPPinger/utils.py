@@ -124,9 +124,7 @@ def get_rtt_from_pong_message(pong_message, received_time):
     """
     sent_time_str = " ".join(pong_message.split()[2:])
     sent_time = datetime.strptime(sent_time_str, "%Y-%m-%d %H:%M:%S.%f")
-    print(received_time)
-    print(sent_time)
-    return int((received_time - sent_time).total_seconds() * 1000)
+    return int((received_time - sent_time).total_seconds() * 1000000)
 
 
 def validate_ping_count(ping_count):
