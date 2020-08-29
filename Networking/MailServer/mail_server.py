@@ -1,4 +1,5 @@
 import socket
+import ssl
 
 msg = "\r\n I love computer networks!"
 endmsg = "\r\n.\r\n"
@@ -19,35 +20,49 @@ print(recv)
 if recv[:3] != '250':
     print('250 reply not received from server.')
 
-clientSocket.send('MAIL FROM: <mdbuckle@uwaterloo.ca>\r\n'.encode())
+clientSocket.send('STARTTLS\r\n'.encode())
 recv = clientSocket.recv(1024).decode()
+print(recv)
+if recv[:3] != '220':
+    print('220 reply not received from server.')
+
+clientSocketSSL = ssl.wrap_socket(clientSocket)
+
+clientSocketSSL.send('HELO Matt\r\n'.encode())
+recv = clientSocketSSL.recv(1024).decode()
+print(recv)
+if recv[:3] != '250':
+    print('250 reply not received from server.')
+
+clientSocketSSL.send('MAIL FROM: <matt.buckley1755@gmail.com>\r\n'.encode())
+recv = clientSocketSSL.recv(1024).decode()
 print(recv)
 if recv[:3] != '250':
     print('250 reply not received from server.')
 
 
-clientSocket.send("RCPT TO: <matt.buckley1755@gmail.com>\r\n".encode())
-recv = clientSocket.recv(1024).decode()
+clientSocketSSL.send("RCPT TO: <mbuckley@cs.toronto.edu>\r\n".encode())
+recv = clientSocketSSL.recv(1024).decode()
 print(recv)
 if recv[:3] != '250':
     print('250 reply not received from server.')
 
 
-clientSocket.send("DATA\r\n".encode())
-recv = clientSocket.recv(1024).decode()
+clientSocketSSL.send("DATA\r\n".encode())
+recv = clientSocketSSL.recv(1024).decode()
 print(recv)
 if recv[:3] != '354':
     print('354 reply not received from server.')
 
-clientSocket.send(msg.encode())
-clientSocket.send(endmsg.encode())
-recv = clientSocket.recv(1024).decode()
+clientSocketSSL.send(msg.encode())
+clientSocketSSL.send(endmsg.encode())
+recv = clientSocketSSL.recv(1024).decode()
 print(recv)
 if recv[:3] != '250':
     print('250 reply not received from server.')
 
-clientSocket.send("QUIT\r\n".encode())
-recv = clientSocket.recv(1024).decode()
+clientSocketSSL.send("QUIT\r\n".encode())
+recv = clientSocketSSL.recv(1024).decode()
 print(recv)
 if recv[:3] != '221':
     print('221 reply not received from server.')
