@@ -1,5 +1,6 @@
 import socket
 import ssl
+import base64
 
 msg = "\r\n I love computer networks!"
 endmsg = "\r\n.\r\n"
@@ -34,7 +35,17 @@ print(recv)
 if recv[:3] != '250':
     print('250 reply not received from server.')
 
-clientSocketSSL.send('MAIL FROM: <matt.buckley1755@gmail.com>\r\n'.encode())
+username = input("Enter email address: ")
+password = input("Enter password: ")
+base64_str = "\x00{0}\x00{1}".format(username, password).encode()
+base64_str = base64.b64encode(base64_str)
+auth_msg = "AUTH PLAIN {}\r\n".format(base64_str.decode()).encode()
+clientSocketSSL.send(auth_msg)
+recv = clientSocketSSL.recv(1024).decode()
+print(recv)
+
+
+clientSocketSSL.send('MAIL FROM: <>\r\n'.format(username).encode())
 recv = clientSocketSSL.recv(1024).decode()
 print(recv)
 if recv[:3] != '250':
