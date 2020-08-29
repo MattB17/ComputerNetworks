@@ -3,4 +3,4 @@ browser. If the request references a stored HTML file then that file is
 rendered. Otherwise, a 404 error is returned.
 
 """
-from Networking.WebServer.WebServer import WebServer
+from Networking.WebServer.web_server import WebServer

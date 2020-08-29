@@ -1,7 +1,7 @@
 Web Server
 ==========
 
-.. automodule:: Networking.WebServer
+.. automodule:: Networking.web_server
 
 .. toctree::
    :maxdepth: 2

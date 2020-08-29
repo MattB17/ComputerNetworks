@@ -45,7 +45,7 @@ recv = clientSocketSSL.recv(1024).decode()
 print(recv)
 
 
-clientSocketSSL.send('MAIL FROM: <>\r\n'.format(username).encode())
+clientSocketSSL.send('MAIL FROM: <{}>\r\n'.format(username).encode())
 recv = clientSocketSSL.recv(1024).decode()
 print(recv)
 if recv[:3] != '250':

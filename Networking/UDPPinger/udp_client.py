@@ -57,13 +57,13 @@ class UDPClient:
         message = "ping {0} {1}".format(ping_number, datetime.now())
         self._client_socket.sendto(message.encode(), (dest_host, dest_port))
 
-    def receive_and_decode_message(self, recv_port):
-        """Receives a message on `recv_port` and decodes the message.
+    def receive_and_decode_message(self, recv_bytes):
+        """Receives a message of length at most `recv_bytes` and decodes it.
 
         Parameters
         ----------
-        recv_port: int
-            The port at which the message is received.
+        recv_bytes: int
+            The maximum number of bytes to be received.
 
         Raises
         ------
@@ -76,18 +76,18 @@ class UDPClient:
             A string representing the decoded message received on `recv_port`.
 
         """
-        received_message, from_addr = self._client_socket.recvfrom(recv_port)
+        received_message, from_addr = self._client_socket.recvfrom(recv_bytes)
         return received_message.decode()
 
     def send_ping_wait_for_response(self, ping_number, dest_host,
-                                    dest_port, recv_port):
+                                    dest_port, recv_bytes):
         """Sends a ping message with `ping_number` and waits for a response.
 
         The message is sent to the node identified by `dest_host` and
-        `dest_port` and the socket waits for a response at `recv_port`. If
-        the socket times out a message is printed to the console indicating
-        that this is the case. Otherwise, the received message and round trip
-        time are printed to the console.
+        `dest_port` and the socket waits for a response of size at most
+        `recv_bytes`. If the socket times out a message is printed to the
+        console indicating that this is the case. Otherwise, the received
+        message and round trip time are printed to the console.
 
         Parameters
         ----------
@@ -97,8 +97,8 @@ class UDPClient:
             A string representing the host to which the message is sent.
         dest_port: int
             An integer representing the port to which the message is sent.
-        recv_port: int
-            The port at which the reply message is received.
+        recv_bytes: int
+            The maximum number of bytes being received.
 
         Returns
         -------
@@ -107,7 +107,7 @@ class UDPClient:
         """
         self.send_ping(ping_number, dest_host, dest_port)
         try:
-            reply_message = self.receive_and_decode_message(recv_port)
+            reply_message = self.receive_and_decode_message(recv_bytes)
             print(reply_message)
             print("RTT of {} microseconds\n".format(
                 utils.get_rtt_from_pong_message(
@@ -115,7 +115,8 @@ class UDPClient:
         except socket.timeout:
             print("Request timed out\n")
 
-    def send_ping_sequence(self, num_pings, dest_host, dest_port, recv_port):
+    def send_ping_sequence(self, num_pings, dest_host,
+                          dest_port, recv_bytes):
         """Sends a sequence of ping messages to `dest_host` at `dest_port`.
 
         A series of `num_pings` ping messages are constructed and sent to the
@@ -132,8 +133,8 @@ class UDPClient:
             A string representing the host to which the pings are sent.
         dest_port: int
             An integer representing the port to which the pings are sent.
-        recv_port: int
-            The port at which the pongs are received.
+        recv_bytes: int
+            The maximum number of bytes that can be received at one time.
 
         Raises
         ------
@@ -149,4 +150,4 @@ class UDPClient:
         utils.validate_ping_count(num_pings)
         for i in range(num_pings):
             self.send_ping_wait_for_response(
-                i, dest_host, dest_port, recv_port)
+                i, dest_host, dest_port, recv_bytes)

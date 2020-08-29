@@ -1,7 +1,7 @@
 Network Server
 ==============
 
-.. automodule:: Networking.Base.NetworkServer
+.. automodule:: Networking.Base.network_server
 
 .. autoclass:: Networking.Base.NetworkServer
    :members:

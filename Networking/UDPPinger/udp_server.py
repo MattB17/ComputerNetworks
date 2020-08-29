@@ -2,7 +2,7 @@
 
 """
 import socket
-from Networking.Base.NetworkServer import NetworkServer
+from Networking.Base.network_server import NetworkServer
 from Networking.UDPPinger import utils
 
 

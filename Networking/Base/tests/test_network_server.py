@@ -1,6 +1,6 @@
 import pytest
 from unittest.mock import MagicMock, patch
-from Networking.Base.NetworkServer import NetworkServer
+from Networking.Base.network_server import NetworkServer
 from socket import AF_INET, SOCK_STREAM, SOCK_DGRAM
 
 

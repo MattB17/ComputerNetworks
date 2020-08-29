@@ -29,7 +29,7 @@ class NetworkServer:
     _running: bool
         Specifies whether the server is currently running.
     _server_socket: socket.socket
-        The socket used to run the server.
+        The socket used by the server.
 
     """
     def __init__(self, host, port, family, type):

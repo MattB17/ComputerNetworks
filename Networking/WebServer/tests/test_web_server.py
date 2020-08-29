@@ -2,8 +2,8 @@ import io
 import sys
 import pytest
 from unittest.mock import MagicMock, patch, call
-from Networking.WebServer.WebServer import WebServer
-from Networking.Base.NetworkServer import NetworkServer
+from Networking.WebServer.web_server import WebServer
+from Networking.Base.network_server import NetworkServer
 from socket import AF_INET, SOCK_STREAM
 
 
