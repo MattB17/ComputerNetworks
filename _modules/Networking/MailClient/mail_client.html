@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Networking.UDPPinger.UDPClient &mdash; Networking 0.1.0 documentation</title>
+  <title>Networking.MailClient.mail_client &mdash; Networking 0.1.0 documentation</title>
   
 
   
@@ -144,7 +144,7 @@
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
-      <li>Networking.UDPPinger.UDPClient</li>
+      <li>Networking.MailClient.mail_client</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -159,43 +159,46 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for Networking.UDPPinger.UDPClient</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;The UDPClient class implements a client using the UDP Protocol.</span>
+  <h1>Source code for Networking.MailClient.mail_client</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;The MailClient class is used to run an email client using the SMTP</span>
+<span class="sd">protocol.</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">socket</span>
 
-
-<div class="viewcode-block" id="UDPClient"><a class="viewcode-back" href="../../../UDPPinger/udp_client.html#Networking.UDPPinger.UDPClient">[docs]</a><span class="k">class</span> <span class="nc">UDPClient</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Implements a UDP Client that waits `timeout` seconds for responses.</span>
+<div class="viewcode-block" id="MailClient"><a class="viewcode-back" href="../../../MailClient/mail_client.html#Networking.MailClient.MailClient">[docs]</a><span class="k">class</span> <span class="nc">MailClient</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Encapsulates the functionality of a mail client.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    timeout: int</span>
-<span class="sd">        The number of seconds that the client waits for a response to a</span>
-<span class="sd">        message it has sent.</span>
+<span class="sd">    host: str</span>
+<span class="sd">        The host to which the client connects.</span>
+<span class="sd">    port: int</span>
+<span class="sd">        The port to which the client connects.</span>
+<span class="sd">    email: str</span>
+<span class="sd">        The email address associated with the client.</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    _client_socket: socket.socket</span>
-<span class="sd">        The socket that the client interacts with.</span>
+<span class="sd">        The socket through which the client interacts with the server.</span>
+<span class="sd">    _host: str</span>
+<span class="sd">        The host to which the client connects.</span>
+<span class="sd">    _port: int</span>
+<span class="sd">        The port to which the client connects.</span>
+<span class="sd">    _email: str</span>
+<span class="sd">        The email address associated with the client.</span>
+<span class="sd">    _is_connected: bool</span>
+<span class="sd">        A boolean indicating if the client is connected to the host.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_client_socket</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_DGRAM</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_client_socket</span><span class="o">.</span><span class="n">settimeout</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
-
-<div class="viewcode-block" id="UDPClient.get_socket_timeout"><a class="viewcode-back" href="../../../UDPPinger/udp_client.html#Networking.UDPPinger.UDPClient.get_socket_timeout">[docs]</a>    <span class="k">def</span> <span class="nf">get_socket_timeout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Retrieves the timeout set on the client&#39;s socket.</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        int</span>
-<span class="sd">            An integer corresponding to the number of seconds that the</span>
-<span class="sd">            client&#39;s socket waits for a response.</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client_socket</span><span class="o">.</span><span class="n">gettimeout</span><span class="p">()</span></div></div>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">email</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_client_socket</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span>
+            <span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_host</span> <span class="o">=</span> <span class="n">host</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_port</span> <span class="o">=</span> <span class="n">port</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_email</span> <span class="o">=</span> <span class="n">email</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_connected</span> <span class="o">=</span> <span class="kc">False</span></div>
 </pre></div>
 
            </div>

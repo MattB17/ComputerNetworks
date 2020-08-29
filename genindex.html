@@ -97,6 +97,7 @@
 <li class="toctree-l1"><a class="reference internal" href="Base/index.html">Base Networking Functionality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="WebServer/index.html">Web Server</a></li>
 <li class="toctree-l1"><a class="reference internal" href="UDPPinger/index.html">UDP Pinger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MailClient/index.html">Mail Client</a></li>
 </ul>
 
             
@@ -166,6 +167,7 @@
  <a href="#C"><strong>C</strong></a>
  | <a href="#G"><strong>G</strong></a>
  | <a href="#I"><strong>I</strong></a>
+ | <a href="#M"><strong>M</strong></a>
  | <a href="#N"><strong>N</strong></a>
  | <a href="#P"><strong>P</strong></a>
  | <a href="#R"><strong>R</strong></a>
@@ -219,6 +221,14 @@
   </ul></td>
 </tr></table>
 
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="MailClient/mail_client.html#Networking.MailClient.MailClient">MailClient (class in Networking.MailClient)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="N">N</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -226,21 +236,27 @@
 </li>
       <li><a href="Base/exceptions.html#module-Networking.Base.exceptions">Networking.Base.exceptions (module)</a>
 </li>
-      <li><a href="Base/network_server.html#module-Networking.Base.NetworkServer">Networking.Base.NetworkServer (module)</a>
+      <li><a href="Base/network_server.html#module-Networking.Base.network_server">Networking.Base.network_server (module)</a>
+</li>
+      <li><a href="MailClient/index.html#module-Networking.MailClient">Networking.MailClient (module)</a>
+</li>
+      <li><a href="MailClient/mail_client.html#module-Networking.MailClient.mail_client">Networking.MailClient.mail_client (module)</a>
 </li>
       <li><a href="UDPPinger/index.html#module-Networking.UDPPinger">Networking.UDPPinger (module)</a>
 </li>
-      <li><a href="UDPPinger/udp_client.html#module-Networking.UDPPinger.udp_client">Networking.UDPPinger.udp_client (module)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="UDPPinger/udp_client.html#module-Networking.UDPPinger.udp_client">Networking.UDPPinger.udp_client (module)</a>
+</li>
       <li><a href="UDPPinger/udp_server.html#module-Networking.UDPPinger.udp_server">Networking.UDPPinger.udp_server (module)</a>
 </li>
       <li><a href="UDPPinger/utils.html#module-Networking.UDPPinger.utils">Networking.UDPPinger.utils (module)</a>
 </li>
       <li><a href="WebServer/index.html#module-Networking.WebServer">Networking.WebServer (module)</a>
 </li>
-      <li><a href="WebServer/web_server.html#module-Networking.WebServer.WebServer">Networking.WebServer.WebServer (module)</a>
+      <li><a href="WebServer/utils.html#module-Networking.WebServer.utils">Networking.WebServer.utils (module)</a>
+</li>
+      <li><a href="WebServer/web_server.html#module-Networking.WebServer.web_server">Networking.WebServer.web_server (module)</a>
 </li>
       <li><a href="Base/network_server.html#Networking.Base.NetworkServer">NetworkServer (class in Networking.Base)</a>
 </li>
@@ -258,8 +274,14 @@
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="WebServer/utils.html#Networking.WebServer.utils.read_message">read_message() (in module Networking.WebServer.utils)</a>
+</li>
       <li><a href="UDPPinger/udp_client.html#Networking.UDPPinger.UDPClient.receive_and_decode_message">receive_and_decode_message() (Networking.UDPPinger.UDPClient method)</a>
 </li>
+      <li><a href="WebServer/utils.html#Networking.WebServer.utils.render_page">render_page() (in module Networking.WebServer.utils)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="Base/network_server.html#Networking.Base.NetworkServer.run">run() (Networking.Base.NetworkServer method)</a>
 
       <ul>
@@ -274,12 +296,14 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="UDPPinger/udp_client.html#Networking.UDPPinger.UDPClient.send_ping">send_ping() (Networking.UDPPinger.UDPClient method)</a>
+      <li><a href="WebServer/utils.html#Networking.WebServer.utils.send_data_through_socket">send_data_through_socket() (in module Networking.WebServer.utils)</a>
 </li>
-      <li><a href="UDPPinger/udp_client.html#Networking.UDPPinger.UDPClient.send_ping_sequence">send_ping_sequence() (Networking.UDPPinger.UDPClient method)</a>
+      <li><a href="UDPPinger/udp_client.html#Networking.UDPPinger.UDPClient.send_ping">send_ping() (Networking.UDPPinger.UDPClient method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="UDPPinger/udp_client.html#Networking.UDPPinger.UDPClient.send_ping_sequence">send_ping_sequence() (Networking.UDPPinger.UDPClient method)</a>
+</li>
       <li><a href="UDPPinger/udp_client.html#Networking.UDPPinger.UDPClient.send_ping_wait_for_response">send_ping_wait_for_response() (Networking.UDPPinger.UDPClient method)</a>
 </li>
       <li><a href="Base/network_server.html#Networking.Base.NetworkServer.stop">stop() (Networking.Base.NetworkServer method)</a>

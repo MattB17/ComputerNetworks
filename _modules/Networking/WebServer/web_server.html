@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Networking.WebServer.WebServer &mdash; Networking 0.1.0 documentation</title>
+  <title>Networking.WebServer.web_server &mdash; Networking 0.1.0 documentation</title>
   
 
   
@@ -144,7 +144,7 @@
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
-      <li>Networking.WebServer.WebServer</li>
+      <li>Networking.WebServer.web_server</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -159,40 +159,40 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for Networking.WebServer.WebServer</h1><div class="highlight"><pre>
+  <h1>Source code for Networking.WebServer.web_server</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;The WebServer class is used to run a web server.</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">socket</span>
 <span class="kn">from</span> <span class="nn">Networking.WebServer</span> <span class="k">import</span> <span class="n">utils</span>
-<span class="kn">from</span> <span class="nn">Networking.Base.NetworkServer</span> <span class="k">import</span> <span class="n">NetworkServer</span>
+<span class="kn">from</span> <span class="nn">Networking.Base.network_server</span> <span class="k">import</span> <span class="n">NetworkServer</span>
 
 
 <div class="viewcode-block" id="WebServer"><a class="viewcode-back" href="../../../WebServer/web_server.html#Networking.WebServer.WebServer">[docs]</a><span class="k">class</span> <span class="nc">WebServer</span><span class="p">(</span><span class="n">NetworkServer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Encapsulates the functionality of a web server.</span>
+
+<span class="sd">    WebServer is a derived class of the generic `NetworkServer`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    host: str</span>
+<span class="sd">        A string representing the host on which the server is run.</span>
+<span class="sd">    port: int</span>
+<span class="sd">        An integer representing the port number where the server is run.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    _host: str</span>
+<span class="sd">        The host on which the server runs.</span>
+<span class="sd">    _port: int</span>
+<span class="sd">        The port on which the server runs.</span>
+<span class="sd">    _running: bool</span>
+<span class="sd">        Specifies whether the server is currently running.</span>
+<span class="sd">    _server_socket: socket.socket</span>
+<span class="sd">        The socket used to run the server.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Encapsulates the functionality of a web server.</span>
-
-<span class="sd">        WebServer is a derived class of the generic `NetworkServer`.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        host: str</span>
-<span class="sd">            A string representing the host on which the server is run.</span>
-<span class="sd">        port: int</span>
-<span class="sd">            An integer representing the port number where the server is run.</span>
-
-<span class="sd">        Attributes</span>
-<span class="sd">        ----------</span>
-<span class="sd">        _host: str</span>
-<span class="sd">            The host on which the server runs.</span>
-<span class="sd">        _port: int</span>
-<span class="sd">            The port on which the server runs.</span>
-<span class="sd">        _running: bool</span>
-<span class="sd">            Specifies whether the server is currently running.</span>
-<span class="sd">        _server_socket: socket.socket</span>
-<span class="sd">            The socket used to run the server.</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_server_socket</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 

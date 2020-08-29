@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Overview: module code &mdash; Networking 0.1.0 documentation</title>
+  <title>Mail Client &mdash; Networking 0.1.0 documentation</title>
   
 
   
@@ -43,7 +43,8 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Mail Client" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -92,11 +93,14 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../Base/index.html">Base Networking Functionality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../WebServer/index.html">Web Server</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../UDPPinger/index.html">UDP Pinger</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../MailClient/index.html">Mail Client</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Mail Client</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Mail Client</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -142,10 +146,16 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Overview: module code</li>
+          <li><a href="index.html">Mail Client</a> &raquo;</li>
+        
+      <li>Mail Client</li>
     
     
       <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/MailClient/mail_client.rst.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
     
@@ -157,25 +167,74 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>All modules for which code is available</h1>
-<ul><li><a href="Networking/Base/NetworkServer.html">Networking.Base.NetworkServer</a></li>
-<li><a href="Networking/Base/exceptions.html">Networking.Base.exceptions</a></li>
-<li><a href="Networking/Base/network_server.html">Networking.Base.network_server</a></li>
-<li><a href="Networking/MailClient/mail_client.html">Networking.MailClient.mail_client</a></li>
-<li><a href="Networking/UDPPinger/UDPClient.html">Networking.UDPPinger.UDPClient</a></li>
-<li><a href="Networking/UDPPinger/UDPServer.html">Networking.UDPPinger.UDPServer</a></li>
-<li><a href="Networking/UDPPinger/udp_client.html">Networking.UDPPinger.udp_client</a></li>
-<li><a href="Networking/UDPPinger/udp_server.html">Networking.UDPPinger.udp_server</a></li>
-<li><a href="Networking/UDPPinger/utils.html">Networking.UDPPinger.utils</a></li>
-<li><a href="Networking/WebServer/WebServer.html">Networking.WebServer.WebServer</a></li>
-<li><a href="Networking/WebServer/utils.html">Networking.WebServer.utils</a></li>
-<li><a href="Networking/WebServer/web_server.html">Networking.WebServer.web_server</a></li>
-</ul>
+  <div class="section" id="module-Networking.MailClient.mail_client">
+<span id="mail-client"></span><h1>Mail Client<a class="headerlink" href="#module-Networking.MailClient.mail_client" title="Permalink to this headline">¶</a></h1>
+<p>The MailClient class is used to run an email client using the SMTP
+protocol.</p>
+<dl class="class">
+<dt id="Networking.MailClient.MailClient">
+<em class="property">class </em><code class="descclassname">Networking.MailClient.</code><code class="descname">MailClient</code><span class="sig-paren">(</span><em>host</em>, <em>port</em>, <em>email</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/MailClient/mail_client.html#MailClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.MailClient.MailClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encapsulates the functionality of a mail client.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>host: str</strong></p>
+<blockquote>
+<div><p>The host to which the client connects.</p>
+</div></blockquote>
+<p><strong>port: int</strong></p>
+<blockquote>
+<div><p>The port to which the client connects.</p>
+</div></blockquote>
+<p><strong>email: str</strong></p>
+<blockquote class="last">
+<div><p>The email address associated with the client.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="35%" />
+<col width="65%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>_client_socket: socket.socket</strong></td>
+<td>The socket through which the client interacts with the server.</td>
+</tr>
+<tr class="row-even"><td><strong>_host: str</strong></td>
+<td>The host to which the client connects.</td>
+</tr>
+<tr class="row-odd"><td><strong>_port: int</strong></td>
+<td>The port to which the client connects.</td>
+</tr>
+<tr class="row-even"><td><strong>_email: str</strong></td>
+<td>The email address associated with the client.</td>
+</tr>
+<tr class="row-odd"><td><strong>_is_connected: bool</strong></td>
+<td>A boolean indicating if the client is connected to the host.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
 
            </div>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Mail Client" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

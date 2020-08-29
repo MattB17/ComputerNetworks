@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Networking.Base.NetworkServer &mdash; Networking 0.1.0 documentation</title>
+  <title>Networking.Base.network_server &mdash; Networking 0.1.0 documentation</title>
   
 
   
@@ -144,7 +144,7 @@
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
-      <li>Networking.Base.NetworkServer</li>
+      <li>Networking.Base.network_server</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -159,7 +159,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for Networking.Base.NetworkServer</h1><div class="highlight"><pre>
+  <h1>Source code for Networking.Base.network_server</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;The NetworkServer class is a generic server class from which other server</span>
 <span class="sd">classes inherit. It provides the base functionality needed for a server</span>
 <span class="sd">on which inheriting classes can build.</span>
@@ -191,7 +191,7 @@
 <span class="sd">    _running: bool</span>
 <span class="sd">        Specifies whether the server is currently running.</span>
 <span class="sd">    _server_socket: socket.socket</span>
-<span class="sd">        The socket used to run the server.</span>
+<span class="sd">        The socket used by the server.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">family</span><span class="p">,</span> <span class="nb">type</span><span class="p">):</span>

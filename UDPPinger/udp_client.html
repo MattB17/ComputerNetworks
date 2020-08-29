@@ -96,16 +96,15 @@
 <li class="toctree-l1"><a class="reference internal" href="../Base/index.html">Base Networking Functionality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../WebServer/index.html">Web Server</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">UDP Pinger</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="index.html#example-usage">Example Usage</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="udp_server.html">UDP Server</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">UDP Client</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="udp_server.html">UDP Server</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">UDP Client</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="utils.html">Utility Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">Utility Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example.html">Example Usage</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../MailClient/index.html">Mail Client</a></li>
 </ul>
 
             
@@ -214,8 +213,8 @@ message it has sent.</p>
 <tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_socket_timeout</span></code>()</td>
 <td>Retrieves the timeout set on the client’s socket.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">receive_and_decode_message</span></code>(recv_port)</td>
-<td>Receives a message on <cite>recv_port</cite> and decodes the message.</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">receive_and_decode_message</span></code>(recv_bytes)</td>
+<td>Receives a message of length at most <cite>recv_bytes</cite> and decodes it.</td>
 </tr>
 <tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">send_ping</span></code>(ping_number,&nbsp;dest_host,&nbsp;dest_port)</td>
 <td>Sends a ping message with number <cite>ping_number</cite> to <cite>dest_host</cite>.</td>
@@ -249,15 +248,15 @@ client’s socket waits for a response.</p>
 
 <dl class="method">
 <dt id="Networking.UDPPinger.UDPClient.receive_and_decode_message">
-<code class="descname">receive_and_decode_message</code><span class="sig-paren">(</span><em>recv_port</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/udp_client.html#UDPClient.receive_and_decode_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.UDPClient.receive_and_decode_message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Receives a message on <cite>recv_port</cite> and decodes the message.</p>
+<code class="descname">receive_and_decode_message</code><span class="sig-paren">(</span><em>recv_bytes</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/udp_client.html#UDPClient.receive_and_decode_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.UDPClient.receive_and_decode_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives a message of length at most <cite>recv_bytes</cite> and decodes it.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>recv_port: int</strong></p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>recv_bytes: int</strong></p>
 <blockquote>
-<div><p>The port at which the message is received.</p>
+<div><p>The maximum number of bytes to be received.</p>
 </div></blockquote>
 </td>
 </tr>
@@ -308,7 +307,7 @@ client’s socket waits for a response.</p>
 
 <dl class="method">
 <dt id="Networking.UDPPinger.UDPClient.send_ping_sequence">
-<code class="descname">send_ping_sequence</code><span class="sig-paren">(</span><em>num_pings</em>, <em>dest_host</em>, <em>dest_port</em>, <em>recv_port</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/udp_client.html#UDPClient.send_ping_sequence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.UDPClient.send_ping_sequence" title="Permalink to this definition">¶</a></dt>
+<code class="descname">send_ping_sequence</code><span class="sig-paren">(</span><em>num_pings</em>, <em>dest_host</em>, <em>dest_port</em>, <em>recv_bytes</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/udp_client.html#UDPClient.send_ping_sequence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.UDPClient.send_ping_sequence" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sends a sequence of ping messages to <cite>dest_host</cite> at <cite>dest_port</cite>.</p>
 <p>A series of <cite>num_pings</cite> ping messages are constructed and sent to the
 node identified by <cite>dest_host</cite> and <cite>dest_port</cite>. After sending each
@@ -331,9 +330,9 @@ waiting for a response then a message is printed indicating this case.</p>
 <blockquote>
 <div><p>An integer representing the port to which the pings are sent.</p>
 </div></blockquote>
-<p><strong>recv_port: int</strong></p>
+<p><strong>recv_bytes: int</strong></p>
 <blockquote>
-<div><p>The port at which the pongs are received.</p>
+<div><p>The maximum number of bytes that can be received at one time.</p>
 </div></blockquote>
 </td>
 </tr>
@@ -353,13 +352,13 @@ to send.</p>
 
 <dl class="method">
 <dt id="Networking.UDPPinger.UDPClient.send_ping_wait_for_response">
-<code class="descname">send_ping_wait_for_response</code><span class="sig-paren">(</span><em>ping_number</em>, <em>dest_host</em>, <em>dest_port</em>, <em>recv_port</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/udp_client.html#UDPClient.send_ping_wait_for_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.UDPClient.send_ping_wait_for_response" title="Permalink to this definition">¶</a></dt>
+<code class="descname">send_ping_wait_for_response</code><span class="sig-paren">(</span><em>ping_number</em>, <em>dest_host</em>, <em>dest_port</em>, <em>recv_bytes</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/UDPPinger/udp_client.html#UDPClient.send_ping_wait_for_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.UDPPinger.UDPClient.send_ping_wait_for_response" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sends a ping message with <cite>ping_number</cite> and waits for a response.</p>
 <p>The message is sent to the node identified by <cite>dest_host</cite> and
-<cite>dest_port</cite> and the socket waits for a response at <cite>recv_port</cite>. If
-the socket times out a message is printed to the console indicating
-that this is the case. Otherwise, the received message and round trip
-time are printed to the console.</p>
+<cite>dest_port</cite> and the socket waits for a response of size at most
+<cite>recv_bytes</cite>. If the socket times out a message is printed to the
+console indicating that this is the case. Otherwise, the received
+message and round trip time are printed to the console.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -376,9 +375,9 @@ time are printed to the console.</p>
 <blockquote>
 <div><p>An integer representing the port to which the message is sent.</p>
 </div></blockquote>
-<p><strong>recv_port: int</strong></p>
+<p><strong>recv_bytes: int</strong></p>
 <blockquote>
-<div><p>The port at which the reply message is received.</p>
+<div><p>The maximum number of bytes being received.</p>
 </div></blockquote>
 </td>
 </tr>

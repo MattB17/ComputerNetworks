@@ -10,6 +10,7 @@ Networking Documentation
    Base/index
    WebServer/index
    UDPPinger/index
+   MailClient/index
 
 
 
