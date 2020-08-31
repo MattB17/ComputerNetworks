@@ -37,3 +37,70 @@ class MailClient:
         self._port = port
         self._email = email
         self._is_connected = False
+
+    def get_host(self):
+        """The host to which the client connects.
+
+        Returns
+        -------
+        str
+            A string representing the host to which the client connects.
+
+        """
+        return self._host
+
+    def get_port(self):
+        """The port to which the client connects.
+
+        Returns
+        -------
+        int
+            An integer representing the port to which the client connects.
+
+        """
+        return self._port
+
+    def get_email_address(self):
+        """The email address associated with the client.
+
+        Returns
+        -------
+        str
+            A string representing the client's email address.
+
+        """
+        return self._email
+
+    def connect(self):
+        """Connects the client to the email server.
+
+        Returns
+        -------
+        None
+
+        """
+        self._client_socket.connect((self._host, self._port))
+        self._is_connected = True
+
+    def is_connected(self):
+        """Indicates if the client is connected to the email server.
+
+        Returns
+        -------
+        bool
+            True if the client is connected to the email server.
+            Otherwise, False.
+
+        """
+        return self._is_connected
+
+    def disconnect(self):
+        """Disconnects the client from the email server.
+
+        Returns
+        -------
+        None
+
+        """
+        self._client_socket.close()
+        self._is_connected = False
