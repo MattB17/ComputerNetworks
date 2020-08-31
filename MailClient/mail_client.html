@@ -98,7 +98,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../WebServer/index.html">Web Server</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../UDPPinger/index.html">UDP Pinger</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Mail Client</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Mail Client</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Mail Client</a><ul class="simple">
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -219,6 +221,134 @@ protocol.</p>
 </tr>
 </tbody>
 </table>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">connect</span></code>()</td>
+<td>Connects the client to the email server.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">disconnect</span></code>()</td>
+<td>Disconnects the client from the email server.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_email_address</span></code>()</td>
+<td>The email address associated with the client.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">get_host</span></code>()</td>
+<td>The host to which the client connects.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_port</span></code>()</td>
+<td>The port to which the client connects.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">is_connected</span></code>()</td>
+<td>Indicates if the client is connected to the email server.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="Networking.MailClient.MailClient.connect">
+<code class="descname">connect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/MailClient/mail_client.html#MailClient.connect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.MailClient.MailClient.connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connects the client to the email server.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Networking.MailClient.MailClient.disconnect">
+<code class="descname">disconnect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/MailClient/mail_client.html#MailClient.disconnect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.MailClient.MailClient.disconnect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disconnects the client from the email server.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Networking.MailClient.MailClient.get_email_address">
+<code class="descname">get_email_address</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/MailClient/mail_client.html#MailClient.get_email_address"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.MailClient.MailClient.get_email_address" title="Permalink to this definition">¶</a></dt>
+<dd><p>The email address associated with the client.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">str</p>
+<blockquote class="last">
+<div><p>A string representing the client’s email address.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Networking.MailClient.MailClient.get_host">
+<code class="descname">get_host</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/MailClient/mail_client.html#MailClient.get_host"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.MailClient.MailClient.get_host" title="Permalink to this definition">¶</a></dt>
+<dd><p>The host to which the client connects.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">str</p>
+<blockquote class="last">
+<div><p>A string representing the host to which the client connects.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Networking.MailClient.MailClient.get_port">
+<code class="descname">get_port</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/MailClient/mail_client.html#MailClient.get_port"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.MailClient.MailClient.get_port" title="Permalink to this definition">¶</a></dt>
+<dd><p>The port to which the client connects.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">int</p>
+<blockquote class="last">
+<div><p>An integer representing the port to which the client connects.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Networking.MailClient.MailClient.is_connected">
+<code class="descname">is_connected</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/MailClient/mail_client.html#MailClient.is_connected"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.MailClient.MailClient.is_connected" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicates if the client is connected to the email server.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">bool</p>
+<blockquote class="last">
+<div><p>True if the client is connected to the email server.
+Otherwise, False.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </dd></dl>
 
 </div>
