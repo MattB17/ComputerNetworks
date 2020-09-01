@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Mail Client &mdash; Networking 0.1.0 documentation</title>
+  <title>Utility Functions &mdash; Networking 0.1.0 documentation</title>
   
 
   
@@ -43,9 +43,7 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Mail Client" href="mail_client.html" />
-    <link rel="prev" title="Example Usage" href="../UDPPinger/example.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -98,9 +96,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../Base/index.html">Base Networking Functionality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../WebServer/index.html">Web Server</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../UDPPinger/index.html">UDP Pinger</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Mail Client</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Mail Client</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="mail_client.html">Mail Client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="utils.html">Utility Functions</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Utility Functions</a></li>
 </ul>
 </li>
 </ul>
@@ -148,13 +146,15 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Mail Client</li>
+          <li><a href="index.html">Mail Client</a> &raquo;</li>
+        
+      <li>Utility Functions</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/MailClient/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/MailClient/utils.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -167,18 +167,41 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-Networking.MailClient">
-<span id="mail-client"></span><h1>Mail Client<a class="headerlink" href="#module-Networking.MailClient" title="Permalink to this headline">¶</a></h1>
-<p>Implementation of a mail client that uses the SMTP protocol to send emails.</p>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Contents</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="mail_client.html">Mail Client</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="utils.html">Utility Functions</a></li>
-</ul>
-</div>
+  <div class="section" id="module-Networking.MailClient.utils">
+<span id="utility-functions"></span><h1>Utility Functions<a class="headerlink" href="#module-Networking.MailClient.utils" title="Permalink to this headline">¶</a></h1>
+<p>A collection of utility functions used in the operation of a mail client.</p>
+<dl class="function">
+<dt id="Networking.MailClient.utils.print_and_validate_reply">
+<code class="descclassname">Networking.MailClient.utils.</code><code class="descname">print_and_validate_reply</code><span class="sig-paren">(</span><em>reply_msg</em>, <em>expected_code</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/MailClient/utils.html#print_and_validate_reply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.MailClient.utils.print_and_validate_reply" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints and validates <cite>reply_msg</cite> based on <cite>expected_code</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>reply_msg: str</strong></p>
+<blockquote>
+<div><p>The message being validated. The first 3 characters of the message are
+a code, representing the server’s response.</p>
+</div></blockquote>
+<p><strong>expected_code: int</strong></p>
+<blockquote>
+<div><p>The code expected to be found in reply message.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><p class="first"><strong>UnexpectedResponseCode</strong></p>
+<blockquote class="last">
+<div><p>If <cite>reply_msg</cite> is a message with a code other than <cite>expected_code</cite>.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </div>
 
 
@@ -186,15 +209,6 @@
            
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="mail_client.html" class="btn btn-neutral float-right" title="Mail Client" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="../UDPPinger/example.html" class="btn btn-neutral float-left" title="Example Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

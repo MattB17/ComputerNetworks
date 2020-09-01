@@ -101,6 +101,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../WebServer/index.html">Web Server</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../UDPPinger/index.html">UDP Pinger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MailClient/index.html">Mail Client</a></li>
 </ul>
 
             
@@ -203,6 +204,31 @@ less than or equal to 0.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>prop: float</strong></p>
 <blockquote class="last">
 <div><p>The number that generated the exception.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="exception">
+<dt id="Networking.Base.exceptions.UnexpectedResponseCode">
+<em class="property">exception </em><code class="descclassname">Networking.Base.exceptions.</code><code class="descname">UnexpectedResponseCode</code><span class="sig-paren">(</span><em>actual_code</em>, <em>expected_code</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/Base/exceptions.html#UnexpectedResponseCode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.Base.exceptions.UnexpectedResponseCode" title="Permalink to this definition">¶</a></dt>
+<dd><p>An Exception when <cite>actual_code</cite> and <cite>expected_code</cite> do not match.</p>
+<p>The Exception is generated when a client expects <cite>expected_code</cite> to be
+returned by the server but <cite>actual_code</cite> was returned instead.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>actual_code: int</strong></p>
+<blockquote>
+<div><p>An integer representing the actual code returned by the server.</p>
+</div></blockquote>
+<p><strong>expected_code: int</strong></p>
+<blockquote class="last">
+<div><p>An integer representing the code expected to be returned by the
+server.</p>
 </div></blockquote>
 </td>
 </tr>

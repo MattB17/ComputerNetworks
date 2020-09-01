@@ -198,6 +198,27 @@
         <span class="n">message</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> is not a valid number of pings. Please specify a &quot;</span>
                    <span class="s2">&quot;number greater than or equal to 1.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ping_count</span><span class="p">))</span>
         <span class="ne">Exception</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="UnexpectedResponseCode"><a class="viewcode-back" href="../../../Base/exceptions.html#Networking.Base.exceptions.UnexpectedResponseCode">[docs]</a><span class="k">class</span> <span class="nc">UnexpectedResponseCode</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;An Exception when `actual_code` and `expected_code` do not match.</span>
+
+<span class="sd">    The Exception is generated when a client expects `expected_code` to be</span>
+<span class="sd">    returned by the server but `actual_code` was returned instead.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    actual_code: int</span>
+<span class="sd">        An integer representing the actual code returned by the server.</span>
+<span class="sd">    expected_code: int</span>
+<span class="sd">        An integer representing the code expected to be returned by the</span>
+<span class="sd">        server.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">actual_code</span><span class="p">,</span> <span class="n">expected_code</span><span class="p">):</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2"> reply not received from the server. </span><span class="si">{1}</span><span class="s2"> was &quot;</span>
+                   <span class="s2">&quot;returned instead.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">expected_code</span><span class="p">,</span> <span class="n">actual_code</span><span class="p">))</span>
+        <span class="ne">Exception</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span></div>
 </pre></div>
 
            </div>
