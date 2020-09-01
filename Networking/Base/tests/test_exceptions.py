@@ -15,3 +15,10 @@ def test_invalid_ping_count():
     assert (str(ping_exc.value) == "-1 is not a valid number of pings. "
                                    "Please specify a number greater than or "
                                    "equal to 1.")
+
+
+def test_unexpected_response_code():
+    with pytest.raises(exc.UnexpectedResponseCode) as resp_exc:
+        raise exc.UnexpectedResponseCode(404, 200)
+    assert (str(resp_exc.value) == "200 reply not received from the server. "
+                                   "404 was returned instead.")
