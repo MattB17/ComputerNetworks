@@ -165,6 +165,7 @@
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">socket</span>
+<span class="kn">from</span> <span class="nn">Networking.MailClient</span> <span class="k">import</span> <span class="n">utils</span>
 
 <div class="viewcode-block" id="MailClient"><a class="viewcode-back" href="../../../MailClient/mail_client.html#Networking.MailClient.MailClient">[docs]</a><span class="k">class</span> <span class="nc">MailClient</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Encapsulates the functionality of a mail client.</span>
@@ -265,7 +266,49 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_client_socket</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_is_connected</span> <span class="o">=</span> <span class="kc">False</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_connected</span> <span class="o">=</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="MailClient.receive_and_validate_reply"><a class="viewcode-back" href="../../../MailClient/mail_client.html#Networking.MailClient.MailClient.receive_and_validate_reply">[docs]</a>    <span class="k">def</span> <span class="nf">receive_and_validate_reply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">recv_bytes</span><span class="p">,</span> <span class="n">expected_code</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Receives and validates a reply message from the server.</span>
+
+<span class="sd">        The received message is validated using `expected_code`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        recv_bytes: int</span>
+<span class="sd">            An integer representing the maximum number of bytes that can be</span>
+<span class="sd">            received.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        UnexpectedResponseCode</span>
+<span class="sd">            If the received reply contains a code other than `expected_code`.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+
+<span class="sd">        Side Effect</span>
+<span class="sd">        -----------</span>
+<span class="sd">        The received reply is printed to the console.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">reply_msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client_socket</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="n">recv_bytes</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+        <span class="n">utils</span><span class="o">.</span><span class="n">print_and_validate_reply</span><span class="p">(</span><span class="n">reply_msg</span><span class="p">,</span> <span class="n">expected_code</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MailClient.connect_and_validate_connection"><a class="viewcode-back" href="../../../MailClient/mail_client.html#Networking.MailClient.MailClient.connect_and_validate_connection">[docs]</a>    <span class="k">def</span> <span class="nf">connect_and_validate_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Requests connection to the server and validates the connection.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">receive_and_validate_reply</span><span class="p">(</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">220</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_is_connected</span> <span class="o">=</span> <span class="kc">False</span></div></div>
 </pre></div>
 
            </div>

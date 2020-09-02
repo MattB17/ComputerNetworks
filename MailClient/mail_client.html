@@ -101,6 +101,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Mail Client</a><ul class="simple">
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">Utility Functions</a></li>
 </ul>
 </li>
 </ul>
@@ -231,20 +232,26 @@ protocol.</p>
 <tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">connect</span></code>()</td>
 <td>Connects the client to the email server.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">disconnect</span></code>()</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">connect_and_validate_connection</span></code>()</td>
+<td>Requests connection to the server and validates the connection.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">disconnect</span></code>()</td>
 <td>Disconnects the client from the email server.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_email_address</span></code>()</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">get_email_address</span></code>()</td>
 <td>The email address associated with the client.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">get_host</span></code>()</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_host</span></code>()</td>
 <td>The host to which the client connects.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_port</span></code>()</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">get_port</span></code>()</td>
 <td>The port to which the client connects.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">is_connected</span></code>()</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">is_connected</span></code>()</td>
 <td>Indicates if the client is connected to the email server.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">receive_and_validate_reply</span></code>(recv_bytes,&nbsp;…)</td>
+<td>Receives and validates a reply message from the server.</td>
 </tr>
 </tbody>
 </table>
@@ -252,6 +259,20 @@ protocol.</p>
 <dt id="Networking.MailClient.MailClient.connect">
 <code class="descname">connect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/MailClient/mail_client.html#MailClient.connect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.MailClient.MailClient.connect" title="Permalink to this definition">¶</a></dt>
 <dd><p>Connects the client to the email server.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Networking.MailClient.MailClient.connect_and_validate_connection">
+<code class="descname">connect_and_validate_connection</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/MailClient/mail_client.html#MailClient.connect_and_validate_connection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.MailClient.MailClient.connect_and_validate_connection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Requests connection to the server and validates the connection.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -342,6 +363,35 @@ protocol.</p>
 <blockquote class="last">
 <div><p>True if the client is connected to the email server.
 Otherwise, False.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Networking.MailClient.MailClient.receive_and_validate_reply">
+<code class="descname">receive_and_validate_reply</code><span class="sig-paren">(</span><em>recv_bytes</em>, <em>expected_code</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/MailClient/mail_client.html#MailClient.receive_and_validate_reply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.MailClient.MailClient.receive_and_validate_reply" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receives and validates a reply message from the server.</p>
+<p>The received message is validated using <cite>expected_code</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>recv_bytes: int</strong></p>
+<blockquote>
+<div><p>An integer representing the maximum number of bytes that can be
+received.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><p class="first"><strong>UnexpectedResponseCode</strong></p>
+<blockquote class="last">
+<div><p>If the received reply contains a code other than <cite>expected_code</cite>.</p>
 </div></blockquote>
 </td>
 </tr>
