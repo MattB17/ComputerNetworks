@@ -3,6 +3,7 @@ protocol.
 
 """
 import socket
+from Networking.MailClient import utils
 
 class MailClient:
     """Encapsulates the functionality of a mail client.
@@ -104,3 +105,45 @@ class MailClient:
         """
         self._client_socket.close()
         self._is_connected = False
+
+    def receive_and_validate_reply(self, recv_bytes, expected_code):
+        """Receives and validates a reply message from the server.
+
+        The received message is validated using `expected_code`.
+
+        Parameters
+        ----------
+        recv_bytes: int
+            An integer representing the maximum number of bytes that can be
+            received.
+
+        Raises
+        ------
+        UnexpectedResponseCode
+            If the received reply contains a code other than `expected_code`.
+
+        Returns
+        -------
+        None
+
+        Side Effect
+        -----------
+        The received reply is printed to the console.
+
+        """
+        reply_msg = self._client_socket.recv(recv_bytes).decode()
+        utils.print_and_validate_reply(reply_msg, expected_code)
+
+    def connect_and_validate_connection(self):
+        """Requests connection to the server and validates the connection.
+
+        Returns
+        -------
+        None
+
+        """
+        self.connect()
+        try:
+            self.receive_and_validate_reply(1024, 220)
+        except:
+            self._is_connected = False
