@@ -165,6 +165,7 @@
 
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">socket</span>
+<span class="kn">import</span> <span class="nn">ssl</span>
 <span class="kn">from</span> <span class="nn">Networking.MailClient</span> <span class="k">import</span> <span class="n">utils</span>
 
 <div class="viewcode-block" id="MailClient"><a class="viewcode-back" href="../../../MailClient/mail_client.html#Networking.MailClient.MailClient">[docs]</a><span class="k">class</span> <span class="nc">MailClient</span><span class="p">:</span>
@@ -191,6 +192,8 @@
 <span class="sd">        The email address associated with the client.</span>
 <span class="sd">    _is_connected: bool</span>
 <span class="sd">        A boolean indicating if the client is connected to the host.</span>
+<span class="sd">    _connection_secured: bool</span>
+<span class="sd">        A boolean indicating if a secure connection has been established.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">email</span><span class="p">):</span>
@@ -200,6 +203,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_port</span> <span class="o">=</span> <span class="n">port</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_email</span> <span class="o">=</span> <span class="n">email</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_is_connected</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connection_secured</span> <span class="o">=</span> <span class="kc">False</span>
 
 <div class="viewcode-block" id="MailClient.get_host"><a class="viewcode-back" href="../../../MailClient/mail_client.html#Networking.MailClient.MailClient.get_host">[docs]</a>    <span class="k">def</span> <span class="nf">get_host</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;The host to which the client connects.</span>
@@ -308,7 +312,42 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">receive_and_validate_reply</span><span class="p">(</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">220</span><span class="p">)</span>
         <span class="k">except</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_is_connected</span> <span class="o">=</span> <span class="kc">False</span></div></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_is_connected</span> <span class="o">=</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="MailClient.is_connection_secure"><a class="viewcode-back" href="../../../MailClient/mail_client.html#Networking.MailClient.MailClient.is_connection_secure">[docs]</a>    <span class="k">def</span> <span class="nf">is_connection_secure</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Indicates if the client has a secure connection to the server.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        bool</span>
+<span class="sd">            True if the client has a secure connection to the server.</span>
+<span class="sd">            Otherwise, False.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection_secured</span></div>
+
+<div class="viewcode-block" id="MailClient.secure_connection"><a class="viewcode-back" href="../../../MailClient/mail_client.html#Networking.MailClient.MailClient.secure_connection">[docs]</a>    <span class="k">def</span> <span class="nf">secure_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Secures the connection to the mail server.</span>
+
+<span class="sd">        If the client is currently not connected to the mail server, then</span>
+<span class="sd">        the connection is created and secured.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+
+<span class="sd">        Side Effect</span>
+<span class="sd">        -----------</span>
+<span class="sd">        Secures the client socket converting from an instance of</span>
+<span class="sd">        `socket.socket` to an instance of `ssl.SSLSocket` which is a derived</span>
+<span class="sd">        class of `socket.socket`.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_connection_secure</span><span class="p">():</span>
+            <span class="n">context</span> <span class="o">=</span> <span class="n">ssl</span><span class="o">.</span><span class="n">create_default_context</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_client_socket</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">wrap_socket</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_client_socket</span><span class="p">,</span> <span class="n">server_hostname</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_host</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_connection_secured</span> <span class="o">=</span> <span class="kc">True</span></div></div>
 </pre></div>
 
            </div>
