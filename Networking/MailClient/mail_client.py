@@ -3,6 +3,7 @@ protocol.
 
 """
 import socket
+import ssl
 from Networking.MailClient import utils
 
 class MailClient:
@@ -29,6 +30,8 @@ class MailClient:
         The email address associated with the client.
     _is_connected: bool
         A boolean indicating if the client is connected to the host.
+    _connection_secured: bool
+        A boolean indicating if a secure connection has been established.
 
     """
     def __init__(self, host, port, email):
@@ -38,6 +41,7 @@ class MailClient:
         self._port = port
         self._email = email
         self._is_connected = False
+        self._connection_secured = False
 
     def get_host(self):
         """The host to which the client connects.
@@ -147,3 +151,38 @@ class MailClient:
             self.receive_and_validate_reply(1024, 220)
         except:
             self._is_connected = False
+
+    def is_connection_secure(self):
+        """Indicates if the client has a secure connection to the server.
+
+        Returns
+        -------
+        bool
+            True if the client has a secure connection to the server.
+            Otherwise, False.
+
+        """
+        return self._connection_secured
+
+    def secure_connection(self):
+        """Secures the connection to the mail server.
+
+        If the client is currently not connected to the mail server, then
+        the connection is created and secured.
+
+        Returns
+        -------
+        None
+
+        Side Effect
+        -----------
+        Secures the client socket converting from an instance of
+        `socket.socket` to an instance of `ssl.SSLSocket` which is a derived
+        class of `socket.socket`.
+
+        """
+        if not self.is_connection_secure():
+            context = ssl.create_default_context()
+            self._client_socket = context.wrap_socket(
+                self._client_socket, server_hostname=self._host)
+            self._connection_secured = True

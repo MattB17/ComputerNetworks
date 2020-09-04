@@ -7,6 +7,7 @@ from Networking.Base import exceptions as exc
 
 SOCKET_STR = "socket.socket"
 VALIDATE_STR = "Networking.MailClient.utils.print_and_validate_reply"
+CONTEXT_STR = "ssl.create_default_context"
 
 
 @pytest.fixture(scope="function")
@@ -25,11 +26,24 @@ def mock_mail_client(mock_client_socket):
     return client
 
 
+@pytest.fixture(scope="function")
+def mock_ssl_socket():
+    return MagicMock()
+
+
+@pytest.fixture(scope="function")
+def mock_context(mock_ssl_socket):
+    context = MagicMock()
+    context.wrap_socket = MagicMock(return_value=mock_ssl_socket)
+    return context
+
+
 def test_instantiation(mock_mail_client):
     assert mock_mail_client.get_host() == '127.0.0.1'
     assert mock_mail_client.get_port() == 8080
     assert mock_mail_client.get_email_address() == "some.email@address.com"
     assert not mock_mail_client.is_connected()
+    assert not mock_mail_client.is_connection_secure()
 
 
 def test_connecting(mock_mail_client, mock_client_socket):
@@ -90,3 +104,36 @@ def test_connect_and_validate_connection_failure(mock_mail_client,
     mock_mail_client.receive_and_validate_reply.assert_called_once_with(
         1024, 220)
     assert not mock_mail_client.is_connected()
+
+
+def test_is_connection_secure_gives_false(mock_mail_client):
+    mock_mail_client._connection_secured = False
+    assert not mock_mail_client.is_connection_secure()
+
+
+def test_is_connection_secure_gives_true(mock_mail_client):
+    mock_mail_client._connection_secured = True
+    assert mock_mail_client.is_connection_secure()
+
+
+@patch(CONTEXT_STR)
+def test_secure_connection_already_secure(context_maker, mock_mail_client,
+                                          mock_context):
+    mock_mail_client.is_connection_secure = MagicMock(return_value=True)
+    mock_mail_client.secure_connection()
+    mock_mail_client.is_connection_secure.assert_called_once()
+    context_maker.assert_not_called()
+    mock_context.wrap_socket.assert_not_called()
+
+
+def test_secure_connection_not_secure(mock_mail_client, mock_context,
+                                      mock_client_socket, mock_ssl_socket):
+    mock_mail_client.is_connection_secure = MagicMock(return_value=False)
+    with patch(CONTEXT_STR, return_value=mock_context) as context_maker:
+        mock_mail_client.secure_connection()
+    mock_mail_client.is_connection_secure.assert_called_once()
+    context_maker.assert_called_once()
+    mock_context.wrap_socket.assert_called_once_with(
+        mock_client_socket, server_hostname='127.0.0.1')
+    assert mock_mail_client._client_socket == mock_ssl_socket
+    assert mock_mail_client._connection_secured
