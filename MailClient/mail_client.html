@@ -388,9 +388,15 @@ Otherwise, False.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">bool</p>
-<blockquote class="last">
+<blockquote>
 <div><p>True if the client has a secure connection to the server.
 Otherwise, False.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first"><strong>ConnectionNotEstablished</strong></p>
+<blockquote class="last">
+<div><p>If a connection to the mail server has not been established.</p>
 </div></blockquote>
 </td>
 </tr>
@@ -431,13 +437,19 @@ received.</p>
 <dt id="Networking.MailClient.MailClient.secure_connection">
 <code class="descname">secure_connection</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/MailClient/mail_client.html#MailClient.secure_connection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.MailClient.MailClient.secure_connection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Secures the connection to the mail server.</p>
-<p>If the client is currently not connected to the mail server, then
-the connection is created and secured.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first"><strong>ConnectionNotEstablished</strong></p>
+<blockquote class="last">
+<div><p>If a connection to the mail server has not been established. In
+this case there is no connection to secure.</p>
+</div></blockquote>
+</td>
 </tr>
 </tbody>
 </table>

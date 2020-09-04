@@ -167,6 +167,7 @@
 <span class="kn">import</span> <span class="nn">socket</span>
 <span class="kn">import</span> <span class="nn">ssl</span>
 <span class="kn">from</span> <span class="nn">Networking.MailClient</span> <span class="k">import</span> <span class="n">utils</span>
+<span class="kn">from</span> <span class="nn">Networking.Base</span> <span class="k">import</span> <span class="n">exceptions</span> <span class="k">as</span> <span class="n">exc</span>
 
 <div class="viewcode-block" id="MailClient"><a class="viewcode-back" href="../../../MailClient/mail_client.html#Networking.MailClient.MailClient">[docs]</a><span class="k">class</span> <span class="nc">MailClient</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Encapsulates the functionality of a mail client.</span>
@@ -317,6 +318,11 @@
 <div class="viewcode-block" id="MailClient.is_connection_secure"><a class="viewcode-back" href="../../../MailClient/mail_client.html#Networking.MailClient.MailClient.is_connection_secure">[docs]</a>    <span class="k">def</span> <span class="nf">is_connection_secure</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Indicates if the client has a secure connection to the server.</span>
 
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ConnectionNotEstablished</span>
+<span class="sd">            If a connection to the mail server has not been established.</span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        bool</span>
@@ -324,13 +330,18 @@
 <span class="sd">            Otherwise, False.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_connected</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="n">exc</span><span class="o">.</span><span class="n">ConnectionNotEstablished</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_host</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_port</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection_secured</span></div>
 
 <div class="viewcode-block" id="MailClient.secure_connection"><a class="viewcode-back" href="../../../MailClient/mail_client.html#Networking.MailClient.MailClient.secure_connection">[docs]</a>    <span class="k">def</span> <span class="nf">secure_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Secures the connection to the mail server.</span>
 
-<span class="sd">        If the client is currently not connected to the mail server, then</span>
-<span class="sd">        the connection is created and secured.</span>
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ConnectionNotEstablished</span>
+<span class="sd">            If a connection to the mail server has not been established. In</span>
+<span class="sd">            this case there is no connection to secure.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>

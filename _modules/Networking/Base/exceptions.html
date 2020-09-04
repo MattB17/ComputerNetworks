@@ -219,6 +219,27 @@
         <span class="n">message</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2"> reply not received from the server. </span><span class="si">{1}</span><span class="s2"> was &quot;</span>
                    <span class="s2">&quot;returned instead.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">expected_code</span><span class="p">,</span> <span class="n">actual_code</span><span class="p">))</span>
         <span class="ne">Exception</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ConnectionNotEstablished"><a class="viewcode-back" href="../../../Base/exceptions.html#Networking.Base.exceptions.ConnectionNotEstablished">[docs]</a><span class="k">class</span> <span class="nc">ConnectionNotEstablished</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;An Exception when a connection has not been established.</span>
+
+<span class="sd">    This Exception is generated for connection based protocols, such as TCP,</span>
+<span class="sd">    when a user tries to access a connection that has not yet been</span>
+<span class="sd">    established.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    host: str</span>
+<span class="sd">        The name of the host for which the connection should be established.</span>
+<span class="sd">    port: int</span>
+<span class="sd">        The port number at the host which will accept the connection.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">):</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;A connection has not been established to </span><span class="si">{0}</span><span class="s2"> at &quot;</span>
+                   <span class="s2">&quot;port </span><span class="si">{1}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
+        <span class="ne">Exception</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span></div>
 </pre></div>
 
            </div>

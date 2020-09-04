@@ -173,6 +173,31 @@
 <p>A collection of custom exceptions generated when dealing with the
 networking applications.</p>
 <dl class="exception">
+<dt id="Networking.Base.exceptions.ConnectionNotEstablished">
+<em class="property">exception </em><code class="descclassname">Networking.Base.exceptions.</code><code class="descname">ConnectionNotEstablished</code><span class="sig-paren">(</span><em>host</em>, <em>port</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/Base/exceptions.html#ConnectionNotEstablished"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.Base.exceptions.ConnectionNotEstablished" title="Permalink to this definition">¶</a></dt>
+<dd><p>An Exception when a connection has not been established.</p>
+<p>This Exception is generated for connection based protocols, such as TCP,
+when a user tries to access a connection that has not yet been
+established.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>host: str</strong></p>
+<blockquote>
+<div><p>The name of the host for which the connection should be established.</p>
+</div></blockquote>
+<p><strong>port: int</strong></p>
+<blockquote class="last">
+<div><p>The port number at the host which will accept the connection.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="exception">
 <dt id="Networking.Base.exceptions.InvalidPingCount">
 <em class="property">exception </em><code class="descclassname">Networking.Base.exceptions.</code><code class="descname">InvalidPingCount</code><span class="sig-paren">(</span><em>ping_count</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/Base/exceptions.html#InvalidPingCount"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.Base.exceptions.InvalidPingCount" title="Permalink to this definition">¶</a></dt>
 <dd><p>An Exception when <cite>ping_count</cite> is less than or equal to 0.</p>
