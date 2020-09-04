@@ -22,3 +22,10 @@ def test_unexpected_response_code():
         raise exc.UnexpectedResponseCode(404, 200)
     assert (str(resp_exc.value) == "200 reply not received from the server. "
                                    "404 was returned instead.")
+
+
+def test_connection_not_established():
+    with pytest.raises(exc.ConnectionNotEstablished) as conn_exc:
+        raise exc.ConnectionNotEstablished('smtp.gmail.com', 587)
+    assert (str(conn_exc.value) == "A connection has not been established to "
+                                   "smtp.gmail.com at port 587.")

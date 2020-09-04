@@ -5,6 +5,7 @@ protocol.
 import socket
 import ssl
 from Networking.MailClient import utils
+from Networking.Base import exceptions as exc
 
 class MailClient:
     """Encapsulates the functionality of a mail client.
@@ -155,6 +156,11 @@ class MailClient:
     def is_connection_secure(self):
         """Indicates if the client has a secure connection to the server.
 
+        Raises
+        ------
+        ConnectionNotEstablished
+            If a connection to the mail server has not been established.
+
         Returns
         -------
         bool
@@ -162,13 +168,18 @@ class MailClient:
             Otherwise, False.
 
         """
+        if not self.is_connected():
+            raise exc.ConnectionNotEstablished(self._host, self._port)
         return self._connection_secured
 
     def secure_connection(self):
         """Secures the connection to the mail server.
 
-        If the client is currently not connected to the mail server, then
-        the connection is created and secured.
+        Raises
+        ------
+        ConnectionNotEstablished
+            If a connection to the mail server has not been established. In
+            this case there is no connection to secure.
 
         Returns
         -------

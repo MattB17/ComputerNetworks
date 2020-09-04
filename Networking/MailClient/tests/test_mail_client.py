@@ -43,7 +43,7 @@ def test_instantiation(mock_mail_client):
     assert mock_mail_client.get_port() == 8080
     assert mock_mail_client.get_email_address() == "some.email@address.com"
     assert not mock_mail_client.is_connected()
-    assert not mock_mail_client.is_connection_secure()
+    assert not mock_mail_client._connection_secured
 
 
 def test_connecting(mock_mail_client, mock_client_socket):
@@ -107,13 +107,24 @@ def test_connect_and_validate_connection_failure(mock_mail_client,
 
 
 def test_is_connection_secure_gives_false(mock_mail_client):
+    mock_mail_client.is_connected = MagicMock(return_value=True)
     mock_mail_client._connection_secured = False
     assert not mock_mail_client.is_connection_secure()
+    mock_mail_client.is_connected.assert_called_once()
 
 
 def test_is_connection_secure_gives_true(mock_mail_client):
+    mock_mail_client.is_connected = MagicMock(return_value=True)
     mock_mail_client._connection_secured = True
     assert mock_mail_client.is_connection_secure()
+    mock_mail_client.is_connected.assert_called_once()
+
+
+def test_is_connection_secure_gives_error(mock_mail_client):
+    mock_mail_client.is_connected = MagicMock(return_value=False)
+    with pytest.raises(exc.ConnectionNotEstablished):
+        mock_mail_client.is_connection_secure()
+    mock_mail_client.is_connected.assert_called_once()
 
 
 @patch(CONTEXT_STR)
@@ -123,7 +134,6 @@ def test_secure_connection_already_secure(context_maker, mock_mail_client,
     mock_mail_client.secure_connection()
     mock_mail_client.is_connection_secure.assert_called_once()
     context_maker.assert_not_called()
-    mock_context.wrap_socket.assert_not_called()
 
 
 def test_secure_connection_not_secure(mock_mail_client, mock_context,
@@ -137,3 +147,13 @@ def test_secure_connection_not_secure(mock_mail_client, mock_context,
         mock_client_socket, server_hostname='127.0.0.1')
     assert mock_mail_client._client_socket == mock_ssl_socket
     assert mock_mail_client._connection_secured
+
+
+@patch(CONTEXT_STR)
+def test_secure_connection_gives_error(context_maker, mock_mail_client):
+    mock_mail_client.is_connection_secure = MagicMock(
+        side_effect=exc.ConnectionNotEstablished('127.0.0.1', 8080))
+    with pytest.raises(exc.ConnectionNotEstablished):
+        mock_mail_client.secure_connection()
+    mock_mail_client.is_connection_secure.assert_called_once()
+    context_maker.assert_not_called()

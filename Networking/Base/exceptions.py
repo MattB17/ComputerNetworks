@@ -57,3 +57,24 @@ class UnexpectedResponseCode(Exception):
         message = ("{0} reply not received from the server. {1} was "
                    "returned instead.".format(expected_code, actual_code))
         Exception.__init__(self, message)
+
+
+class ConnectionNotEstablished(Exception):
+    """An Exception when a connection has not been established.
+
+    This Exception is generated for connection based protocols, such as TCP,
+    when a user tries to access a connection that has not yet been
+    established.
+
+    Parameters
+    ----------
+    host: str
+        The name of the host for which the connection should be established.
+    port: int
+        The port number at the host which will accept the connection.
+
+    """
+    def __init__(self, host, port):
+        message = ("A connection has not been established to {0} at "
+                   "port {1}.".format(host, port))
+        Exception.__init__(self, message)
