@@ -29,3 +29,10 @@ def test_connection_not_established():
         raise exc.ConnectionNotEstablished('smtp.gmail.com', 587)
     assert (str(conn_exc.value) == "A connection has not been established to "
                                    "smtp.gmail.com at port 587.")
+
+
+def test_connection_not_secure():
+    with pytest.raises(exc.ConnectionNotSecure) as conn_exc:
+        raise exc.ConnectionNotSecure('smtp.gmail.com', 587)
+    assert (str(conn_exc.value) == "The connection to smtp.gmail.com at port "
+                                   "587 is not secure.")

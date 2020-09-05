@@ -173,7 +173,7 @@ class MailClient:
         return self._connection_secured
 
     def secure_connection(self):
-        """Secures the connection to the mail server.
+        """Secures an existing connection to the mail server.
 
         Raises
         ------
@@ -197,3 +197,44 @@ class MailClient:
             self._client_socket = context.wrap_socket(
                 self._client_socket, server_hostname=self._host)
             self._connection_secured = True
+
+    def create_secure_connection(self):
+        """Creates a new secure connection to the mail server.
+
+        A new connection is created to the mail server and secured with SSL.
+        If a secure connection already exists, nothing is done. If an unsecure
+        connection exists, this connection is secured.
+
+        Returns
+        -------
+        None
+
+        Side Effect
+        -----------
+        creates a secure connection from the client to the server.
+
+        """
+        if not self.is_connected():
+            self.connect()
+        self.secure_connection()
+
+    def unsecure_connection(self):
+        """Unsecures an existing secure connection to the mail server.
+
+        Raises
+        ------
+        ConnectionNotEstablished
+            If the client is currently not connected to the mail server.
+        ConnectionNotSecure
+            If there is an existing connection that is not currently secure.
+            The user is alerted in this case as he/she may have inadvertently
+            sent sensitive information over an unencrypted channel.
+
+        Returns
+        -------
+        None
+
+        """
+        if not self.is_connection_secure():
+            raise exc.ConnectionNotSecure(self._host, self._port)
+        self._client_socket = self._client_socket.unwrap()

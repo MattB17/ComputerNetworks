@@ -78,3 +78,23 @@ class ConnectionNotEstablished(Exception):
         message = ("A connection has not been established to {0} at "
                    "port {1}.".format(host, port))
         Exception.__init__(self, message)
+
+
+class ConnectionNotSecure(Exception):
+    """An Exception when a connection has not been secured.
+
+    This Exception is generated when a user accesses a connection assuming
+    it is secure but, in fact, the connection has not been secured.
+
+    Parameters
+    ----------
+    host: str
+        The name of the host for which the connection is unsecure.
+    port: int
+        The port number to which the unsecure connection points.
+
+    """
+    def __init__(self, host, port):
+        message = "The connection to {0} at port {1} is not secure.".format(
+            host, port)
+        Exception.__init__(self, message)

@@ -157,3 +157,55 @@ def test_secure_connection_gives_error(context_maker, mock_mail_client):
         mock_mail_client.secure_connection()
     mock_mail_client.is_connection_secure.assert_called_once()
     context_maker.assert_not_called()
+
+
+def test_create_secure_connection_not_connected(mock_mail_client):
+    mock_mail_client.is_connected = MagicMock(return_value=False)
+    mock_mail_client.connect = MagicMock(side_effect=None)
+    mock_mail_client.secure_connection = MagicMock(side_effect=None)
+    mock_mail_client.create_secure_connection()
+    mock_mail_client.is_connected.assert_called_once()
+    mock_mail_client.connect.assert_called_once()
+    mock_mail_client.secure_connection.assert_called_once()
+
+
+def test_create_secure_connection_when_connected(mock_mail_client):
+    mock_mail_client.is_connected = MagicMock(return_value=True)
+    mock_mail_client.connect = MagicMock()
+    mock_mail_client.secure_connection = MagicMock(side_effect=None)
+    mock_mail_client.create_secure_connection()
+    mock_mail_client.is_connected.assert_called_once()
+    mock_mail_client.connect.assert_not_called()
+    mock_mail_client.secure_connection.assert_called_once()
+
+
+def test_unsecure_connection_no_connection(mock_mail_client,
+                                           mock_client_socket):
+    mock_mail_client.is_connection_secure = MagicMock(
+        side_effect=exc.ConnectionNotEstablished('127.0.0.1', 8080))
+    mock_client_socket.unwrap = MagicMock()
+    with pytest.raises(exc.ConnectionNotEstablished):
+        mock_mail_client.unsecure_connection()
+    mock_mail_client.is_connection_secure.assert_called_once()
+    mock_client_socket.unwrap.assert_not_called()
+
+
+def test_unsecure_connection_not_secure(mock_mail_client,
+                                        mock_client_socket):
+    mock_mail_client.is_connection_secure = MagicMock(return_value=False)
+    mock_client_socket.unwrap = MagicMock()
+    with pytest.raises(exc.ConnectionNotSecure):
+        mock_mail_client.unsecure_connection()
+    mock_mail_client.is_connection_secure.assert_called_once()
+    mock_client_socket.unwrap.assert_not_called()
+
+
+def test_unsecure_connection_is_secure(mock_mail_client,
+                                       mock_client_socket):
+    mock_mail_client.is_connection_secure = MagicMock(return_value=True)
+    unsecure_socket = MagicMock()
+    mock_client_socket.unwrap = MagicMock(return_value=unsecure_socket)
+    mock_mail_client.unsecure_connection()
+    mock_mail_client.is_connection_secure.assert_called_once()
+    mock_client_socket.unwrap.assert_called_once()
+    assert mock_mail_client._client_socket == unsecure_socket
