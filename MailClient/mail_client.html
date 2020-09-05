@@ -238,29 +238,35 @@ protocol.</p>
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">connect_and_validate_connection</span></code>()</td>
 <td>Requests connection to the server and validates the connection.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">disconnect</span></code>()</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">create_secure_connection</span></code>()</td>
+<td>Creates a new secure connection to the mail server.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">disconnect</span></code>()</td>
 <td>Disconnects the client from the email server.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">get_email_address</span></code>()</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_email_address</span></code>()</td>
 <td>The email address associated with the client.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_host</span></code>()</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">get_host</span></code>()</td>
 <td>The host to which the client connects.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">get_port</span></code>()</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">get_port</span></code>()</td>
 <td>The port to which the client connects.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">is_connected</span></code>()</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">is_connected</span></code>()</td>
 <td>Indicates if the client is connected to the email server.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">is_connection_secure</span></code>()</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">is_connection_secure</span></code>()</td>
 <td>Indicates if the client has a secure connection to the server.</td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">receive_and_validate_reply</span></code>(recv_bytes,&nbsp;…)</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">receive_and_validate_reply</span></code>(recv_bytes,&nbsp;…)</td>
 <td>Receives and validates a reply message from the server.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">secure_connection</span></code>()</td>
-<td>Secures the connection to the mail server.</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">secure_connection</span></code>()</td>
+<td>Secures an existing connection to the mail server.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">unsecure_connection</span></code>()</td>
+<td>Unsecures an existing secure connection to the mail server.</td>
 </tr>
 </tbody>
 </table>
@@ -282,6 +288,23 @@ protocol.</p>
 <dt id="Networking.MailClient.MailClient.connect_and_validate_connection">
 <code class="descname">connect_and_validate_connection</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/MailClient/mail_client.html#MailClient.connect_and_validate_connection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.MailClient.MailClient.connect_and_validate_connection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Requests connection to the server and validates the connection.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Networking.MailClient.MailClient.create_secure_connection">
+<code class="descname">create_secure_connection</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/MailClient/mail_client.html#MailClient.create_secure_connection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.MailClient.MailClient.create_secure_connection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new secure connection to the mail server.</p>
+<p>A new connection is created to the mail server and secured with SSL.
+If a secure connection already exists, nothing is done. If an unsecure
+connection exists, this connection is secured.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -436,7 +459,7 @@ received.</p>
 <dl class="method">
 <dt id="Networking.MailClient.MailClient.secure_connection">
 <code class="descname">secure_connection</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/MailClient/mail_client.html#MailClient.secure_connection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.MailClient.MailClient.secure_connection" title="Permalink to this definition">¶</a></dt>
-<dd><p>Secures the connection to the mail server.</p>
+<dd><p>Secures an existing connection to the mail server.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -448,6 +471,33 @@ received.</p>
 <blockquote class="last">
 <div><p>If a connection to the mail server has not been established. In
 this case there is no connection to secure.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Networking.MailClient.MailClient.unsecure_connection">
+<code class="descname">unsecure_connection</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/MailClient/mail_client.html#MailClient.unsecure_connection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.MailClient.MailClient.unsecure_connection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unsecures an existing secure connection to the mail server.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first"><strong>ConnectionNotEstablished</strong></p>
+<blockquote>
+<div><p>If the client is currently not connected to the mail server.</p>
+</div></blockquote>
+<p><strong>ConnectionNotSecure</strong></p>
+<blockquote class="last">
+<div><p>If there is an existing connection that is not currently secure.
+The user is alerted in this case as he/she may have inadvertently
+sent sensitive information over an unencrypted channel.</p>
 </div></blockquote>
 </td>
 </tr>

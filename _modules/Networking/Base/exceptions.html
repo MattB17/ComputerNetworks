@@ -240,6 +240,26 @@
         <span class="n">message</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;A connection has not been established to </span><span class="si">{0}</span><span class="s2"> at &quot;</span>
                    <span class="s2">&quot;port </span><span class="si">{1}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
         <span class="ne">Exception</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ConnectionNotSecure"><a class="viewcode-back" href="../../../Base/exceptions.html#Networking.Base.exceptions.ConnectionNotSecure">[docs]</a><span class="k">class</span> <span class="nc">ConnectionNotSecure</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;An Exception when a connection has not been secured.</span>
+
+<span class="sd">    This Exception is generated when a user accesses a connection assuming</span>
+<span class="sd">    it is secure but, in fact, the connection has not been secured.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    host: str</span>
+<span class="sd">        The name of the host for which the connection is unsecure.</span>
+<span class="sd">    port: int</span>
+<span class="sd">        The port number to which the unsecure connection points.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">):</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;The connection to </span><span class="si">{0}</span><span class="s2"> at port </span><span class="si">{1}</span><span class="s2"> is not secure.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+        <span class="ne">Exception</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span></div>
 </pre></div>
 
            </div>
