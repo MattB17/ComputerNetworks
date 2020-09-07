@@ -265,7 +265,10 @@ protocol.</p>
 <tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">secure_connection</span></code>()</td>
 <td>Secures an existing connection to the mail server.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">unsecure_connection</span></code>()</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">send_message_wait_for_reply</span></code>(msg,&nbsp;recv_bytes,&nbsp;…)</td>
+<td>Sends <cite>msg</cite> to the mail server and then waits for a reply.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">unsecure_connection</span></code>()</td>
 <td>Unsecures an existing secure connection to the mail server.</td>
 </tr>
 </tbody>
@@ -471,6 +474,43 @@ received.</p>
 <blockquote class="last">
 <div><p>If a connection to the mail server has not been established. In
 this case there is no connection to secure.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Networking.MailClient.MailClient.send_message_wait_for_reply">
+<code class="descname">send_message_wait_for_reply</code><span class="sig-paren">(</span><em>msg</em>, <em>recv_bytes</em>, <em>expected_code</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Networking/MailClient/mail_client.html#MailClient.send_message_wait_for_reply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Networking.MailClient.MailClient.send_message_wait_for_reply" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends <cite>msg</cite> to the mail server and then waits for a reply.</p>
+<p>A reply of size at most <cite>recv_bytes</cite> is received and validated
+using <cite>expected_code</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>msg: str</strong></p>
+<blockquote>
+<div><p>The message to be sent</p>
+</div></blockquote>
+<p><strong>recv_bytes: int</strong></p>
+<blockquote>
+<div><p>The maximum number of bytes allowed for the reply message.</p>
+</div></blockquote>
+<p><strong>expected_code: int</strong></p>
+<blockquote>
+<div><p>The code expected to be sent with the reply message.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><p class="first"><strong>UnexpectedResponseCode</strong></p>
+<blockquote class="last">
+<div><p>If the received reply contains a code other than <cite>expected_code</cite>.</p>
 </div></blockquote>
 </td>
 </tr>

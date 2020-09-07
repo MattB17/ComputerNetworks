@@ -399,7 +399,35 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_connection_secure</span><span class="p">():</span>
             <span class="k">raise</span> <span class="n">exc</span><span class="o">.</span><span class="n">ConnectionNotSecure</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_host</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_port</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_client_socket</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client_socket</span><span class="o">.</span><span class="n">unwrap</span><span class="p">()</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_client_socket</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client_socket</span><span class="o">.</span><span class="n">unwrap</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="MailClient.send_message_wait_for_reply"><a class="viewcode-back" href="../../../MailClient/mail_client.html#Networking.MailClient.MailClient.send_message_wait_for_reply">[docs]</a>    <span class="k">def</span> <span class="nf">send_message_wait_for_reply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">recv_bytes</span><span class="p">,</span> <span class="n">expected_code</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sends `msg` to the mail server and then waits for a reply.</span>
+
+<span class="sd">        A reply of size at most `recv_bytes` is received and validated</span>
+<span class="sd">        using `expected_code`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        msg: str</span>
+<span class="sd">            The message to be sent</span>
+<span class="sd">        recv_bytes: int</span>
+<span class="sd">            The maximum number of bytes allowed for the reply message.</span>
+<span class="sd">        expected_code: int</span>
+<span class="sd">            The code expected to be sent with the reply message.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        UnexpectedResponseCode</span>
+<span class="sd">            If the received reply contains a code other than `expected_code`.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_client_socket</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="se">\r\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">receive_and_validate_reply</span><span class="p">(</span><span class="n">recv_bytes</span><span class="p">,</span> <span class="n">expected_code</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>
