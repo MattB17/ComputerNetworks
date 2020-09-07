@@ -209,3 +209,25 @@ def test_unsecure_connection_is_secure(mock_mail_client,
     mock_mail_client.is_connection_secure.assert_called_once()
     mock_client_socket.unwrap.assert_called_once()
     assert mock_mail_client._client_socket == unsecure_socket
+
+
+def test_send_message_wait_for_reply_exception(mock_mail_client,
+                                               mock_client_socket):
+    mock_client_socket.send = MagicMock(side_effect=None)
+    mock_mail_client.receive_and_validate_reply = MagicMock(
+        side_effect=exc.UnexpectedResponseCode(530, 250))
+    with pytest.raises(exc.UnexpectedResponseCode):
+        mock_mail_client.send_message_wait_for_reply("HELO Matt", 1024, 250)
+    mock_client_socket.send.assert_called_once_with(b'HELO Matt\r\n')
+    mock_mail_client.receive_and_validate_reply.assert_called_once_with(
+        1024, 250)
+
+
+def test_send_message_wait_for_reply_no_exception(mock_mail_client,
+                                                  mock_client_socket):
+    mock_client_socket.send = MagicMock(side_effect=None)
+    mock_mail_client.receive_and_validate_reply = MagicMock(side_effect=None)
+    mock_mail_client.send_message_wait_for_reply("STARTTLS", 1024, 220)
+    mock_client_socket.send.assert_called_once_with(b'STARTTLS\r\n')
+    mock_mail_client.receive_and_validate_reply.assert_called_once_with(
+        1024, 220)

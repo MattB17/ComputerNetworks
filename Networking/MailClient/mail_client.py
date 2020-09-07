@@ -238,3 +238,31 @@ class MailClient:
         if not self.is_connection_secure():
             raise exc.ConnectionNotSecure(self._host, self._port)
         self._client_socket = self._client_socket.unwrap()
+
+    def send_message_wait_for_reply(self, msg, recv_bytes, expected_code):
+        """Sends `msg` to the mail server and then waits for a reply.
+
+        A reply of size at most `recv_bytes` is received and validated
+        using `expected_code`.
+
+        Parameters
+        ----------
+        msg: str
+            The message to be sent
+        recv_bytes: int
+            The maximum number of bytes allowed for the reply message.
+        expected_code: int
+            The code expected to be sent with the reply message.
+
+        Raises
+        ------
+        UnexpectedResponseCode
+            If the received reply contains a code other than `expected_code`.
+
+        Returns
+        -------
+        None
+
+        """
+        self._client_socket.send("{}\r\n".format(msg).encode())
+        self.receive_and_validate_reply(recv_bytes, expected_code)
