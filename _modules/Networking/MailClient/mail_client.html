@@ -166,6 +166,8 @@
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">socket</span>
 <span class="kn">import</span> <span class="nn">ssl</span>
+<span class="kn">import</span> <span class="nn">getpass</span>
+<span class="kn">import</span> <span class="nn">base64</span>
 <span class="kn">from</span> <span class="nn">Networking.MailClient</span> <span class="k">import</span> <span class="n">utils</span>
 <span class="kn">from</span> <span class="nn">Networking.Base</span> <span class="k">import</span> <span class="n">exceptions</span> <span class="k">as</span> <span class="n">exc</span>
 
@@ -427,7 +429,26 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_client_socket</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="se">\r\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">receive_and_validate_reply</span><span class="p">(</span><span class="n">recv_bytes</span><span class="p">,</span> <span class="n">expected_code</span><span class="p">)</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">receive_and_validate_reply</span><span class="p">(</span><span class="n">recv_bytes</span><span class="p">,</span> <span class="n">expected_code</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MailClient.authenticate"><a class="viewcode-back" href="../../../MailClient/mail_client.html#Networking.MailClient.MailClient.authenticate">[docs]</a>    <span class="k">def</span> <span class="nf">authenticate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Authenticates the client to the server.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        UnexpectedResponseCode</span>
+<span class="sd">            If authentication is not successful.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pwd</span> <span class="o">=</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getpass</span><span class="p">()</span>
+        <span class="n">base64_str</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="se">\x00</span><span class="si">{0}</span><span class="se">\x00</span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_email</span><span class="p">,</span> <span class="n">pwd</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">send_message_wait_for_reply</span><span class="p">(</span>
+            <span class="s2">&quot;AUTH PLAIN </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">base64_str</span><span class="o">.</span><span class="n">decode</span><span class="p">()),</span> <span class="mi">1024</span><span class="p">,</span> <span class="mi">235</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>
