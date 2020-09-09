@@ -8,6 +8,8 @@ from Networking.Base import exceptions as exc
 SOCKET_STR = "socket.socket"
 VALIDATE_STR = "Networking.MailClient.utils.print_and_validate_reply"
 CONTEXT_STR = "ssl.create_default_context"
+PASS_STR = "getpass.getpass"
+BASE64_STR = "base64.b64encode"
 
 
 @pytest.fixture(scope="function")
@@ -231,3 +233,29 @@ def test_send_message_wait_for_reply_no_exception(mock_mail_client,
     mock_client_socket.send.assert_called_once_with(b'STARTTLS\r\n')
     mock_mail_client.receive_and_validate_reply.assert_called_once_with(
         1024, 220)
+
+
+def test_authenticate_no_error(mock_mail_client):
+    mock_mail_client.send_message_wait_for_reply = MagicMock(side_effect=None)
+    with patch(PASS_STR, return_value="Password1") as mock_pass, \
+        patch(BASE64_STR, return_value=b'aX7tYltw4TG') as mock_base:
+        mock_mail_client.authenticate()
+    mock_pass.assert_called_once()
+    mock_base.assert_called_once_with(
+        b'\x00some.email@address.com\x00Password1')
+    mock_mail_client.send_message_wait_for_reply.assert_called_once_with(
+        "AUTH PLAIN aX7tYltw4TG", 1024, 235)
+
+
+def test_authenticate_with_error(mock_mail_client):
+    mock_mail_client.send_message_wait_for_reply = MagicMock(
+        side_effect=exc.UnexpectedResponseCode(535, 235))
+    with patch(PASS_STR, return_value="Password2") as mock_pass, \
+        patch(BASE64_STR, return_value=b'x17hfdT11') as mock_base:
+        with pytest.raises(exc.UnexpectedResponseCode):
+            mock_mail_client.authenticate()
+    mock_pass.assert_called_once()
+    mock_base.assert_called_once_with(
+        b'\x00some.email@address.com\x00Password2')
+    mock_mail_client.send_message_wait_for_reply.assert_called_once_with(
+        "AUTH PLAIN x17hfdT11", 1024, 235)

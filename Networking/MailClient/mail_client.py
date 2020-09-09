@@ -4,6 +4,8 @@ protocol.
 """
 import socket
 import ssl
+import getpass
+import base64
 from Networking.MailClient import utils
 from Networking.Base import exceptions as exc
 
@@ -266,3 +268,22 @@ class MailClient:
         """
         self._client_socket.send("{}\r\n".format(msg).encode())
         self.receive_and_validate_reply(recv_bytes, expected_code)
+
+    def authenticate(self):
+        """Authenticates the client to the server.
+
+        Raises
+        ------
+        UnexpectedResponseCode
+            If authentication is not successful.
+
+        Returns
+        -------
+        None
+
+        """
+        pwd = getpass.getpass()
+        base64_str = base64.b64encode(
+            "\x00{0}\x00{1}".format(self._email, pwd).encode())
+        self.send_message_wait_for_reply(
+            "AUTH PLAIN {}".format(base64_str.decode()), 1024, 235)
