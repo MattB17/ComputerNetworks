@@ -382,6 +382,25 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">secure_connection</span><span class="p">()</span></div>
 
+<div class="viewcode-block" id="MailClient.validate_secure_connection"><a class="viewcode-back" href="../../../MailClient/mail_client.html#Networking.MailClient.MailClient.validate_secure_connection">[docs]</a>    <span class="k">def</span> <span class="nf">validate_secure_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Validates that a secure connection to the mail server exists.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ConnectionNotEstablished</span>
+<span class="sd">            If the client is currently not connected to the mail server.</span>
+<span class="sd">        ConnectionNotSecure</span>
+<span class="sd">            If the client is connected to the mail server but that connection</span>
+<span class="sd">            has not been secured.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_connection_secure</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="n">exc</span><span class="o">.</span><span class="n">ConnectionNotSecure</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_host</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_port</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="MailClient.unsecure_connection"><a class="viewcode-back" href="../../../MailClient/mail_client.html#Networking.MailClient.MailClient.unsecure_connection">[docs]</a>    <span class="k">def</span> <span class="nf">unsecure_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Unsecures an existing secure connection to the mail server.</span>
 
@@ -399,8 +418,7 @@
 <span class="sd">        None</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_connection_secure</span><span class="p">():</span>
-            <span class="k">raise</span> <span class="n">exc</span><span class="o">.</span><span class="n">ConnectionNotSecure</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_host</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_port</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validate_secure_connection</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_client_socket</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client_socket</span><span class="o">.</span><span class="n">unwrap</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="MailClient.send_message_wait_for_reply"><a class="viewcode-back" href="../../../MailClient/mail_client.html#Networking.MailClient.MailClient.send_message_wait_for_reply">[docs]</a>    <span class="k">def</span> <span class="nf">send_message_wait_for_reply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">recv_bytes</span><span class="p">,</span> <span class="n">expected_code</span><span class="p">):</span>
