@@ -1,5 +1,5 @@
 import pytest
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock, patch, call
 from Networking.MailClient.mail_client import MailClient
 from socket import AF_INET, SOCK_STREAM
 from Networking.Base import exceptions as exc
@@ -259,3 +259,16 @@ def test_authenticate_with_error(mock_mail_client):
         b'\x00some.email@address.com\x00Password2')
     mock_mail_client.send_message_wait_for_reply.assert_called_once_with(
         "AUTH PLAIN x17hfdT11", 1024, 235)
+
+
+def test_initiate_secure_smtp_connection(mock_mail_client):
+    mock_mail_client.connect = MagicMock(side_effect=None)
+    mock_mail_client.send_message_wait_for_reply = MagicMock(side_effect=None)
+    mock_mail_client.secure_connection = MagicMock(side_effect=None)
+    mock_mail_client.initiate_secure_smtp_connection()
+    mock_mail_client.connect.assert_called_once()
+    send_calls = [call("HELO some.email@address.com", 1024, 250),
+                  call("STARTTLS", 1024, 220)]
+    mock_mail_client.send_message_wait_for_reply.assert_has_calls(send_calls)
+    assert mock_mail_client.send_message_wait_for_reply.call_count == 2
+    mock_mail_client.secure_connection.assert_called_once()

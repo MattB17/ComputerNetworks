@@ -287,3 +287,26 @@ class MailClient:
             "\x00{0}\x00{1}".format(self._email, pwd).encode())
         self.send_message_wait_for_reply(
             "AUTH PLAIN {}".format(base64_str.decode()), 1024, 235)
+
+    def initiate_secure_smtp_connection(self):
+        """Initiates and then secures a connection to the mail server.
+
+        A set of messages are first sent to the server to introduce the
+        client in accordance with the SMTP protocol. Then, the established
+        connection is secured with SSL.
+
+        Raises
+        ------
+        UnexpectedResponseCode
+            If any of the introduction messages is rejected by the server.
+
+        Returns
+        -------
+        None
+
+        """
+        self.connect()
+        self.send_message_wait_for_reply(
+            'HELO {}'.format(self._email), 1024, 250)
+        self.send_message_wait_for_reply('STARTTLS', 1024, 220)
+        self.secure_connection()
