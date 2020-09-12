@@ -220,6 +220,25 @@ class MailClient:
             self.connect()
         self.secure_connection()
 
+    def validate_secure_connection(self):
+        """Validates that a secure connection to the mail server exists.
+
+        Raises
+        ------
+        ConnectionNotEstablished
+            If the client is currently not connected to the mail server.
+        ConnectionNotSecure
+            If the client is connected to the mail server but that connection
+            has not been secured.
+
+        Returns
+        -------
+        None
+
+        """
+        if not self.is_connection_secure():
+            raise exc.ConnectionNotSecure(self._host, self._port)
+
     def unsecure_connection(self):
         """Unsecures an existing secure connection to the mail server.
 
@@ -237,8 +256,7 @@ class MailClient:
         None
 
         """
-        if not self.is_connection_secure():
-            raise exc.ConnectionNotSecure(self._host, self._port)
+        self.validate_secure_connection()
         self._client_socket = self._client_socket.unwrap()
 
     def send_message_wait_for_reply(self, msg, recv_bytes, expected_code):
