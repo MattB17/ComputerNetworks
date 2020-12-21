@@ -13,6 +13,7 @@
   * one of two principal IPsec protocols
   * provides source authentication and data integrity but does not provide confidentiality
 * **AIMD:** Additive-increase, Multiplicative-decrease
+* **ALU:** Arithmetic Logic Unit
 * **AON:** Active Optical Network
 * **AP:** access point
   * the base station in a basic service set (BSS) within the 802.11 wireless LAN architecture
@@ -163,6 +164,7 @@
 
 ### H
 * **HaaS:** Hardware as a Service
+* **HDL:** Hardware Description Language
 * **HDLC:** high-level data link control
   * A link-layer protocol for point-to-point links
 * **HFC:** Hybrid Fiber Coaxial Cable
