@@ -373,6 +373,8 @@
 ### T
 * **TCAM:** Ternary Content Addressable Memory
 * **TCP:** Transmission Control Protocol
+* **TCP Incast**
+  * Many connections, oblivious of one another, send a synchronized burst of packets to a single destination that overloads the network, causing high loss rates and timeouts
 * **TDM:** Time-Division Multiplexing
  * Technique used to partition a broadcast channel's bandwidth among all nodes sharing that channel based on time
  * time is divided into frames and if there are N nodes then a frame has N slots
@@ -380,7 +382,7 @@
 * **TLS:** Transport Layer Security
   * A slightly modified version of SSL version 3
   * has been standardized
-* **TOR switch:** Top of Rack Switch
+* **ToR switch:** Top of Rack Switch
   * The switch at the top of each rack in a data center
   * it interconnects hosts in the rack with each other and with other switches in the data center.
 * **TOS:** Type of Service
